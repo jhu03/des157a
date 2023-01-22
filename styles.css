@@ -1,19 +1,24 @@
 body {
+    font-family: 'Bitter', serif;
+    line-height: 1.6em;
     max-width: 1200px;
     min-width: 800px;
     color: #F2F2F2;
 }
 
+#content {
+    margin: 30px;
+}
+
 main {
     display: flex;
     flex-direction: row;
-    margin: 30px;
 }
 
 header {
     border-radius: 5px;
     color: #4A4A4A;
-    margin: 60px 30px;
+    margin: 30px;
 }
 
 #banner {
@@ -25,13 +30,7 @@ header {
 }
 
 #vinyl {
-    animation-name: vinyl;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    transform-origin: center;
-
-    margin: 0;
+    margin: 0px;
     width: 600px;
     height: 600px;
 
@@ -42,13 +41,21 @@ header {
     z-index: 1;
 }
 
+#vinyl:hover img {
+    animation-name: vinyl;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform-origin: center;
+}
+
 #shadow {
     position: relative;
     right: -500px;
     bottom: 647px;
     z-index: 0;
 
-    margin: 0;
+    margin: 0px;
     width: 600px;
 }
 
@@ -58,8 +65,10 @@ header {
 }
 
 h1, h2 {
-    font-family: 'Lora';
-    font-weight: 600;
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+    
 }
 
 h2 {
@@ -69,21 +78,25 @@ h2 {
 
 section {
     border-radius: 5px;
+    margin: auto;
     padding: 30px;
     width: 270px;
+    height: 270px;
 }
 
 #studios {
     background-color: #846AAD;
+    margin-left: 30px;
 }
 
 #research {
     background-color: #2D5CA3;
-    margin: 0px 50px;
+    margin: 0px 30px 0px;
 }
 
 #final {
     background-color: #669D43;
+    margin-right: 10px;
 }
 
 ul {
@@ -98,6 +111,9 @@ ul li a {
 
 footer {
     background-color: #E5CA93;
-    margin: 0;
     padding: 10px;
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
 }
