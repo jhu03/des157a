@@ -29,7 +29,8 @@ header {
     height: 250px;
 }
 
-#vinyl {
+#vinyl img{
+    animation-play-state: paused;
     margin: 0px;
     width: 600px;
     height: 600px;
@@ -45,6 +46,7 @@ header {
     animation-name: vinyl;
     animation-duration: 5s;
     animation-iteration-count: infinite;
+    animation-play-state: running;
     animation-timing-function: linear;
     transform-origin: center;
 }
