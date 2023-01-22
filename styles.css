@@ -96,18 +96,28 @@ section {
 
 #final {
     background-color: #669D43;
-    margin-right: 10px;
+
+}
+
+#final ul li a:hover {
+    border-left: 3px solid #B3CEA1;
+    /* color: #4A4A4A; */
+    /* padding: 10px 0px; */
 }
 
 ul {
-    padding-left: 0; 
+    padding-left: 5px; 
     list-style-type: none;
 }
 
 ul li a {
     text-decoration: none;
     color: aliceblue;
+    border-left: 3px solid transparent;
+    padding: 5px 15px;
 }
+
+
 
 footer {
     background-color: #E5CA93;
