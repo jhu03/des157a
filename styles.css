@@ -8,6 +8,7 @@ body {
 
 #content {
     margin: 30px;
+    pad: 30px;
 }
 
 main {
@@ -29,41 +30,77 @@ header {
     height: 250px;
 }
 
-#vinyl img{
-    animation-play-state: paused;
-    margin: 0px;
+#animation {
     width: 600px;
     height: 600px;
 
     position: relative;
-    right: -500px;
+    left: 45%;
     bottom: 150px;
+}
+
+#animation #vinyl{
+    animation-name: vinyl;
+    animation-delay: 1s;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-timing-function: linear;
+    transform-origin: center;
+
+    width: 600px;
+    height: 600px;
+
+    /* position: relative;
+    left: 45%;
+    bottom: 150px; */
 
     z-index: 1;
 }
 
-#vinyl:hover img {
-    animation-name: vinyl;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
+#animation:hover #vinyl {
     animation-play-state: running;
-    animation-timing-function: linear;
-    transform-origin: center;
+    animation-delay: 1s;
 }
 
-#shadow {
+#arm {
+    position: relative;
+    left: 60%;
+    bottom: 100%;
+    transform: rotate(-15deg);
+
+    width: 150px;
+    height: 200px;
+    z-index: 2;
+}
+
+#animation:hover #arm {
+    animation-name: arm;
+    animation-direction: alternate;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    transform-origin: top right;
+    animation-fill-mode: both;
+}
+
+/* #shadow {
     position: relative;
     right: -500px;
     bottom: 647px;
     z-index: 0;
 
-    margin: 0px;
     width: 600px;
-}
+} */
 
 @keyframes vinyl {
     0% {transform: rotate(0deg);}
     100% {transform: rotate(360deg);}
+}
+
+@keyframes arm {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(15deg);}
 }
 
 h1, h2 {
@@ -124,7 +161,7 @@ ul li a {
 footer {
     background-color: #E5CA93;
     padding: 10px;
-    width: 100%;
+    min-width: 1200px;
 
     position: absolute;
     bottom: 0;
