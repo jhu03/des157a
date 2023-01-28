@@ -4,8 +4,14 @@ body {
     font-size: 1em;
     font-weight: 300;
     line-height: 1.8em;
+    /* max-width: 1200px;
+    min-width: 800px; */
+}
+
+#container {
     max-width: 1200px;
     min-width: 800px;
+    margin: auto;
 }
 
 main {
@@ -27,6 +33,7 @@ header {
     width: 1100px;
     height: 250px;
     position: relative;
+    margin: auto;
 }
 
 #headings {
@@ -127,6 +134,8 @@ h3 {
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+
+    transition: all 1s;
 }
 
 @keyframes armStatic {
@@ -170,7 +179,6 @@ section h2 {
 
 #studios {
     background-color: #846AAD;
-    margin-left: 30px;
 }
 
 #studios ul li a:hover {
@@ -189,7 +197,6 @@ section h2 {
 #final {
     background-color: #669D43;
     height: 100px;
-    /* margin-right: 30px; */
 }
 
 #final ul li a:hover {
