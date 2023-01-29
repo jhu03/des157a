@@ -14,6 +14,10 @@
             gap: 10px;
             line-height: 0;
         }   
+
+        #frogNum {
+            margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -26,20 +30,44 @@
         <div id="frogs"></div>
     </div>
      
+    <div id="alt">
+        <span></span>
+    </div>
+
     <script>
         // var animalChoice = prompt("Heads or tails?"," ");
         var frog = prompt("How many frogs would you like?"," ");
-        var animal = ["seal", "frog"];
+        var animal = ["seal", "frog","cat"];
+        var test = animal.length
 
         function frogCount() {
             var count = document.querySelector('#frogNum span');
             count.innerHTML = "Your frog count: " + (frog);
         }
 
-        function space() {
 
+        // function seals() {
+        //     var randomNum = Math.random()*100;
+        //     var sealNum = Math.floor(randomNum);
+
+        //     console.log(sealNum);
+        //     return(sealNum);
+        // }
+
+        function randomInt (min, max) {
+            var numOfValues = max - min + 1;
+            var randomNum = Math.random();
+            var randomValue = randomNum * numOfValues;
+            var roundedRandomValue = Math.floor(randomValue);
+            var finalNum = min + roundedRandomValue;
+
+            return finalNum;
         }
+        
+        var friend = document.querySelector('#alt span');
+        friend.innerHTML = "Seems like your frogs befriended a " + (animal[randomInt(0,2)]);
 
+        
         if (frog<10) {
             frogChoice.innerHTML = '<p>need more frog</p>';
             frogCount();
@@ -51,14 +79,20 @@
         }
 
         for (i=0;i<=(frog-1);i++) {
-                var newFrog = document.createElement('p');
-                var newFrogAdd = document.createTextNode('🐸');
-                newFrog.appendChild(newFrogAdd);
-                
-                frogs.appendChild(newFrog);
+            var newFrog = document.createElement('p');
+            var newFrogAdd = document.createTextNode('🐸');
+            newFrog.appendChild(newFrogAdd);
+            
+            frogs.appendChild(newFrog);
         }
 
-        
+        // for (i=0;i<=(seals()-1);i++) {
+        //     var newSeal = document.createElement('p');
+        //     var newSealAdd = document.createTextNode('🦭');
+        //     newSeal.appendChild(newSealAdd);
+            
+        //     alt.appendChild(newSeal);
+        // }
 
     </script>
     
