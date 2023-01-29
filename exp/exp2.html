@@ -5,15 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experiemnt 2</title>
+
+    <style>
+        #frogs {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            line-height: 0;
+        }   
+    </style>
 </head>
 <body>
     <h1>Experiment 2</h1>
+
+    <div id="frogChoice"></div>
+
+    <div id="frogNum">
+        <span></span>
+        <div id="frogs"></div>
+    </div>
      
     <script>
+        // var animalChoice = prompt("Heads or tails?"," ");
+        var frog = prompt("How many frogs would you like?"," ");
+        var animal = ["seal", "frog"];
 
-        var frog = prompt("How many frogs would you like?"," ")
+        function frogCount() {
+            var count = document.querySelector('#frogNum span');
+            count.innerHTML = "Your frog count: " + (frog);
+        }
 
-        document.ge
+        function space() {
+
+        }
+
+        if (frog<10) {
+            frogChoice.innerHTML = '<p>need more frog</p>';
+            frogCount();
+        } else if (frog>=10) {
+            frogChoice.innerHTML = '<p>so many frogs 🐸</p>';
+            frogCount();
+        } else {
+            frogChoice.innerHTML = '<p>you did not choose a frog. im disappointed</p>';
+        }
+
+        for (i=0;i<=(frog-1);i++) {
+                var newFrog = document.createElement('p');
+                var newFrogAdd = document.createTextNode('🐸');
+                newFrog.appendChild(newFrogAdd);
+                
+                frogs.appendChild(newFrog);
+        }
+
+        
 
     </script>
     
