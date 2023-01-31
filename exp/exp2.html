@@ -33,41 +33,45 @@
      
     <div id="friend">
         <p></p>
-        <img src="../images/cat.png">
+        <img src="#">
     </div>
 
     <script>
+        // --- The program prompts the user to input a random number. The page will display text based on if the user chose a number that is less than than 10, greater than 10, or is not a number. The page will also display the user's input in frog emojis. For example, if a user inputs '4', the page will display some text and 4 frog emojis. In addition, a function will generate a random number that will be an index number for a string and image array. A statement will display the array's random output on the page and the corresponding image.
+
+
+        // --- Variables used in the program
         var frog = prompt("How many frogs would you like?"," ");
         var animal = ["dog", "frog","cat","pig"];
         var animalPic = ["../images/dog.png","../images/frog.png","../images/cat.png","../images/pig.png"]
         var test = animal.length
 
 
+        // --- Displays user's input on the page as a number and with the same amount of frog emojis
         function frogCount() {
             var count = document.querySelector('#frogNum span');
             count.innerHTML = "Your frog count: " + (frog);
         }
 
+        // -- Random number generator for animalPic index number 
         function randomInt(test) {
             var randomNum = Math.random();
             var randomValue = randomNum * test;
             var finalNum = Math.floor(randomValue);
 
-            console.log("finalnum" + finalNum);
-
             return finalNum;
         }
         
+        // --- Calling generated index number to display a picture from animalPic array
         function friend () {
             var friend = document.querySelector('#friend p');
             var arrayIndex = randomInt(test);
             
             friend.innerHTML = "Seems like your frogs befriended a " + (animal[arrayIndex]);  
-
-            document.querySelector('#friend img').src = 
-            animalPic[arrayIndex];
+            document.querySelector('#friend img').src = animalPic[arrayIndex];
         }
         
+        // -- Generates displays depending on number inputted, along with the number of frog emojis and animalPic friend
         if (frog<10) {
             frogChoice.innerHTML = '<p>need more frog</p>';
             frogCount();
@@ -80,6 +84,7 @@
             frogChoice.innerHTML = '<p>you did not choose a frog. im disappointed</p>';
         }
 
+        // -- For each number within the input, a new frog emoji will be generated  
         for (i=0;i<=(frog-1);i++) {
             var newFrog = document.createElement('p');
             var newFrogAdd = document.createTextNode('🐸');
