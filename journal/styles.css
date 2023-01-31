@@ -7,72 +7,88 @@
 }
 
 body {
+    color: #333;
     line-height: 1.2em;
+    font-family: 'Bitter', serif;
 }
 
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: baseline;
     margin: 10px 30px;
 }
 
 header h1,h2 {
     font-size: 1em;
+    font-weight: 300;
 }
 
+header h1 {
+    color: #49354a;
+    font-weight: 800;
+}
+
+h1, h2 {
+    font-family: 'Lora', serif;
+}
 
 article {
     background-color: #D4D3F8;
 
     border-radius: 5px;
-    padding: 30px;
+    padding: 50px;
     width: 550px;
     height: 550px;
 }
 
 article h2 {
-    font-size: 1.5em;
-    margin: 10px 0px;
+    font-size: 1.6em;
+    margin: 0 0 15px;
 }
 
 article date {
+    color: #49354a;
     font-size: 0.8em;
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 article p {
-    font-size: 0.9em;
+    font-size: 0.75em;
+}
+
+a {
+    font-size: 0.95em;
 }
 
 #content {
-    column-count: 3;
+    column-count: 2;
     column-gap: 30px;
     column-fill: auto;
     height: 470px;
+    margin-top: 10px;
+}
+
+#portal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    font-size: 0.8em;
+}
+
+#portal p {
+    font-size: 0.9em;
+    line-height: 1em;
+    margin: 5px;
 }
 
 #vinyl {
-
-    /* background-image: url(../images/halfVinyl.png); */
-    /* background-repeat: no-repeat; */
-    /* position: absolute;
-    transform-origin: center;
-    top: 20%;
-    left: 73%; */
-
-    /* width: 550px;
-    height: 550px; */
     z-index: -1;
 }
 
 img {
-    /* position: absolute; */
-    /* transform-origin: center; */
-    
-    /* top: 10%;
-    left: 40%; */
-
     height: 50%;
     z-index: -1;
 } 
