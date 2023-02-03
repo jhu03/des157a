@@ -1,0 +1,62 @@
+/* ----- intro ----- */
+body {
+    background-color: #222;
+    color: #F8F8F8;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    width: 1200px;
+    height: 750px;
+}
+
+#intro {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+#intro h1 {
+    font-size: 3em;
+}
+
+#intro p {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 30px 0px;
+}
+
+#start {
+    background-color: #007AFF;
+    color: #F8F8F8;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    padding: 15px 50px;
+    transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+#start:hover {
+    background-color: #E9E9EB;
+    color: #007AFF;
+}
+
+/* ----- inputs ----- */
+
+#input {
+    display: none;
+}
+
+body {
+    background-color: #222;
+    color: antiquewhite;
+}
+
+
+label, input {
+    display: block;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+/* ---- outputs ----- */

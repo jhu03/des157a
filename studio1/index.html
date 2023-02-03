@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- normalize css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <!-- link stylesheet  -->
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- link javascript  -->
+    <script src="script.js" defer></script> 
+    <title>Mad Libs</title>
+</head>
+
+<body>
+    <header id="intro">
+        <img src="images/phone.png" width="621" height="750" alt="phone graphic">
+
+        <div>
+             <h1>Drunk Text <br> Simulator</h1>
+            <p>The experience after a fun night out, <br>but without the hangover and the cringe</p>
+
+            <button id="start">Start</button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- <section class="intro">
+            <p>The experience after a fun night out, but without the hangover and the cringe</p>
+
+            <button id="start">Start</button>
+        </section> -->
+
+        <section id="input">
+        
+            <form>
+                <label for="personName">Name of someone you know</label>
+                <input type="text" id="personName" required>
+
+                <label for="time">Random time</label>
+                <input type="text" id="time" required>
+
+                <label for="event">Event</label>
+                <input type="text" id="event" required>
+
+                <label for="eventNoun">Plural noun</label>
+                <input type="text" id="eventNoun" required>
+
+                <label for="eventNounAction">Past tense verb</label>
+                <input type="text" id="eventNounAction" required>
+
+                <label for="personVerb">Verb</label>
+                <input type="text" id="personVerb" required>
+
+                <label for="personAdj">Adjective</label>
+                <input type="text" id="personAdj" required>
+                
+                <label for="food">Random Food</label>
+                <input type="text" id="food" required>
+
+                <label for="item">Random object</label>
+                <input type="text" id="item" required>
+
+                <label for="eventNounAction">Past tense verb</label>
+                <input type="text" id="eventNounAction" required>
+                
+                <input type="submit">
+            </form>
+
+            <button id="home">Back to Intro</button>
+
+        </section>
+
+        <section id="outputs">
+
+        </section>
+    </main>
+</body>
+</html>
