@@ -55,11 +55,9 @@ body {
 
 /* ----- inputs ----- */
 
-/* #input {
-    display: none;
-    display: flex;
-    flex-direction: row;
-} */
+#input {
+    gap: 300px;
+}
 
 /* body {
     background-color: #222;
@@ -67,22 +65,112 @@ body {
 } */
 
 form {
-    background-color: #E9E9EB;
+    background-color: #F5F5F5;
     border-radius: 15px;
     color: #333;
-    padding: 40px;
-    width: 40%;
+    padding: 40px 40px 20px;
+    width: 35%;
+}
+
+#form1, #form2 {
+    margin: auto;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 550;
+    margin: 0px 0px 20px ;
+    text-align: center;
 }
 
 label, input {
     display: block;
 }
 
+label {
+    margin-bottom: 8px;
+
+}
+
 input {
-    border: 1px solid #333;
+    border: 1.5px solid transparent;
     border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 5px;
+    margin-bottom: 25px;
+    padding: 8px;
+    width: 95%;
+}
+
+input[type="text"]:focus {
+    border: 1.5px solid #B2B2B5;
+    outline: 0;
+
+}
+
+#submit {
+    background-color: #F5F5F5;
+    border-top: 1px solid #B2B2B5;
+    color: #007AFF;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 30px;
 }
 
 /* ---- outputs ----- */
+
+/* #output {
+    display: block;
+} */
+
+#output h1{
+    font-size: 3em;
+    font-weight: 600;
+}
+
+/* #phone {
+    overflow: hidden;
+    background-image: url(images/emptyPhone.png);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 600px;
+    width: 286px;
+} */
+
+#phone {
+    position: relative;
+    font-size: 0.92em;
+}
+
+#messages {
+    background-color: #222;
+    overflow: scroll;
+    width: 295px;
+    height: 520px;
+    position: absolute;
+    bottom: 3%;
+    left: 4%;
+}
+
+.sender {
+    background-color: #007AFF;
+    border-radius: 15px;
+    margin: 0 15px 20px auto;
+    padding: 1px 15px;
+}
+
+.receiver {
+    background-color: #ECECEC;
+    border-radius: 15px;
+    color: #333;
+    margin: 0 auto 20px 15px;
+    padding: 1px 15px;
+    width: 60%;
+}
+
+.short {
+    width: 30%;
+}
+
+.long {
+    width: 60%;
+}
