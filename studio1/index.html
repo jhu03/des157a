@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <header id="intro">
+    <header id="intro" class="showing">
         <img src="images/phone.png" width="621" height="750" alt="phone graphic">
 
         <div>
@@ -36,47 +36,60 @@
             <button id="start">Start</button>
         </section> -->
 
-        <section id="input">
+        <section id="input" class="hidden">
         
+            <img src="images/bottle.png" width="206" height="600" alt="bottle graphic">
+
             <form>
-                <label for="personName">Name of someone you know</label>
-                <input type="text" id="personName" required>
+                <div id="form1">
+                    <label for="personName">Name of someone you know</label>
+                    <input type="text" id="personName" required>
 
-                <label for="time">Random time</label>
-                <input type="text" id="time" required>
+                    <label for="time">Random time</label>
+                    <input type="text" id="time" required>
 
-                <label for="event">Event</label>
-                <input type="text" id="event" required>
+                    <label for="event">Event</label>
+                    <input type="text" id="event" required>
 
-                <label for="eventNoun">Plural noun</label>
-                <input type="text" id="eventNoun" required>
+                    <label for="eventNoun">Plural noun</label>
+                    <input type="text" id="eventNoun" required>
 
-                <label for="eventNounAction">Past tense verb</label>
-                <input type="text" id="eventNounAction" required>
+                    <label for="eventNounAction">Past tense verb</label>
+                    <input type="text" id="eventNounAction" required>
 
-                <label for="personVerb">Verb</label>
-                <input type="text" id="personVerb" required>
+                    <button id="next">Next</button>
+                </div>
+               
+                <div id="form2">
+                    
 
-                <label for="personAdj">Adjective</label>
-                <input type="text" id="personAdj" required>
+                    <label for="personVerb">Verb</label>
+                    <input type="text" id="personVerb" required>
+
+                    <label for="personAdj">Adjective</label>
+                    <input type="text" id="personAdj" required>
+                    
+                    <label for="food">Random Food</label>
+                    <input type="text" id="food" required>
+
+                    <label for="item">Random object</label>
+                    <input type="text" id="item" required>
+
+                    <label for="eventNounAction">Past tense verb</label>
+                    <input type="text" id="eventNounAction" required>
+
+                    <input type="submit">
+                </div>
+
                 
-                <label for="food">Random Food</label>
-                <input type="text" id="food" required>
-
-                <label for="item">Random object</label>
-                <input type="text" id="item" required>
-
-                <label for="eventNounAction">Past tense verb</label>
-                <input type="text" id="eventNounAction" required>
                 
-                <input type="submit">
             </form>
 
-            <button id="home">Back to Intro</button>
+            <!-- <button id="home">Back to Intro</button> -->
 
         </section>
 
-        <section id="outputs">
+        <section id="outputs" class="hidden">
 
         </section>
     </main>

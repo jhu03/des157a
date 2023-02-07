@@ -1,3 +1,17 @@
+/* ----- general ----- */
+.showing {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin: 60px 0px;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
 /* ----- intro ----- */
 body {
     background-color: #222;
@@ -8,11 +22,11 @@ body {
     height: 750px;
 }
 
-#intro {
+/* #intro {
     display: flex;
     align-items: center;
     gap: 60px;
-}
+} */
 
 #intro h1 {
     font-size: 3em;
@@ -41,22 +55,34 @@ body {
 
 /* ----- inputs ----- */
 
-#input {
+/* #input {
     display: none;
-}
+    display: flex;
+    flex-direction: row;
+} */
 
-body {
+/* body {
     background-color: #222;
     color: antiquewhite;
-}
+} */
 
+form {
+    background-color: #E9E9EB;
+    border-radius: 15px;
+    color: #333;
+    padding: 40px;
+    width: 40%;
+}
 
 label, input {
     display: block;
 }
 
 input {
+    border: 1px solid #333;
+    border-radius: 5px;
     margin-bottom: 20px;
+    padding: 5px;
 }
 
 /* ---- outputs ----- */
