@@ -40,7 +40,7 @@
         
             <img src="images/bottle.png" width="206" height="600" alt="bottle graphic">
 
-            <form>
+            <form id="form">
 
                 <h2>Craft the perfect message.</h2>
 
@@ -57,7 +57,9 @@
                     <label for="eventNoun">Plural noun</label>
                     <input type="text" id="eventNoun" required>
 
-                    <!-- <button id="next">Next</button> -->
+                    <span>Page 1/2</span>
+
+                    <button id="next">Next</button>
                 </div>
                
                 <div id="form2">
@@ -78,47 +80,43 @@
                     <label for="eventNounAction">Past tense verb</label>
                     <input type="text" id="eventNounAction" required>
 
-                    <!-- <input type="submit" id="submit"> -->
+                    <p>Page 1/2</p>
+
+                    <input type="submit" id="submit">
                 </div>
 
-                
-                <input type="submit" id="submit">
+                <!-- <button id="home">Back to Intro</button> -->
+
+                <input type="submit" id="submit" class="hidden">
             </form>
 
-            <!-- <button id="home">Back to Intro</button> -->
 
         </section>
 
-        <section id="output" class="showing">
+        <section id="output" class="hidden">
             <h1>So... <br> What happened <br> yesterday?</h1>
             
             <div id="phone">
                 <img src="images/emptyPhone.png" width="321" height="650" alt="empty phone">
                 <div id="messages">
 
-                    <div class="sender short">
-                        <p>name hiiii</p>
-                    </div>
+                    <p class="sender short">name hiiii</p>
 
-                    <div class="receiver">
-                        <p>?? it’s 11:30, where are you?</p>
-                    </div>
+                    <p class="receiver long">?? it’s 11:30, where are you?</p>
 
-                    <div class="sender long">
-                        <p>ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
-                    </div>
+                    <p class="sender long">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
 
-                    <div class="receiver short">
-                        <p>llamas? at valentines?</p>
-                    </div>
+                    <p class="receiver short">llamas? at valentines?</p>
 
-                    <div class="sender short">
-                        <p>yeASDS</p>
-                    </div>
+                    <p class="sender short followup">yeASDS</p>
 
-                    <div class="sender long">
-                        <p>oop s I acciden tly sat someone</p>
-                    </div>
+                    <p class="sender long followup">oop s I acciden tly sat someone</p>
+
+                    <p class="sender long followup">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+
+                    <p class="sender long followup">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+
+                    <p class="sender long followup last">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
                 </div>
             </div>
         </section>

@@ -6,11 +6,12 @@
 
     const start = document.querySelector('#start');
     start.addEventListener('click', function () {
+        event.preventDefault();
         document.querySelector('#intro').className = 'hidden';
         document.querySelector('#input').className = 'showing';
         document.querySelector('#output').className = 'hidden';
         document.body.style.backgroundColor = 'white';
-        // document.querySelector('#form2').className = 'hidden';
+        document.querySelector('#form2').className = 'hidden';
     })
 
     // const home = document.querySelector('#home');
@@ -19,21 +20,26 @@
     //     document.querySelector('#input').className = 'hidden';
     // })
 
-    // const next = document.querySelector('#next');
-    // next.addEventListener('click', function () {
-    //     // document.querySelector('#intro').className = 'hidden';
-    //     // document.querySelector('#input').className = 'showing';
-    //     document.querySelector('#form1').className = 'hidden';
-    //     // document.querySelector('#form2').className = 'showing';
+    const next = document.querySelector('#next');
+    next.addEventListener('click', function () {
+        event.preventDefault();
+        document.querySelector('#intro').className = 'hidden';
+        document.querySelector('#input').className = 'showing';
+        document.querySelector('#form1').className = 'hidden';
+        document.querySelector('#output').className = 'hidden';
+        document.querySelector('#form2').className = 'displayForm';
 
-    // })
+    })
 
 
-    const submit = document.querySelector('#submit');
-    submit.addEventListener('click', function () {
+    const submit = document.querySelector('#form');
+    submit.addEventListener('submit', function (event) {
+        event.preventDefault();
         document.querySelector('#intro').className = 'hidden';
         document.querySelector('#input').className = 'hidden';
         document.querySelector('#output').className = 'showing';
+        document.querySelector('#form1').className = 'hidden';
+        document.querySelector('#form2').className = 'hidden';
     })
 
 
