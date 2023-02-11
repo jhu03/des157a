@@ -22,7 +22,7 @@
 
         <div>
              <h1>Drunk Text <br> Simulator</h1>
-            <p>The experience after a fun night out, <br>but without the hangover and the cringe</p>
+            <p>The experience after a fun night out, <br> without the hangover and the cringe</p>
 
             <button id="start">Start</button>
         </div>
@@ -56,8 +56,8 @@
 
                     <label for="eventNoun">A plural noun</label>
                     <input type="text" id="eventNoun" required>
-
-                    <p>Page 1/2</p>
+                    
+                    <p>Page 1/3</p>
                 </div>
 
                     <!-- <div id="buttons">
@@ -66,8 +66,7 @@
                     </div> -->
                     
 
-                <div id="form2">
-                    
+                <div id="form2" class="displayForm">
                     <label for="personVerb">A verb</label>
                     <input type="text" id="personVerb" required>
 
@@ -80,17 +79,29 @@
                     <label for="item">A random object</label>
                     <input type="text" id="item" required>
 
-                    <label for="eventNounAction">Past tense verb</label>
-                    <input type="text" id="eventNounAction" required>
-
-                    <p>Page 2/2</p>
+                    <p>Page 2/3</p>
                 </div>
+
+                <div id="form3" class="hidden">
+                    <label for="person2">Someone else you know</label>
+                    <input type="text" id="person2" required>
+
+                    <label for="person2Verb">Past tense verb</label>
+                    <input type="text" id="person2Verb" required>
+
+                    <label for="person2Noun">Past tense verb</label>
+                    <input type="text" id="person2Noun" required>
+
+                    <p>Page 3/3</p>
+                </div>
+                
 
                 <div id="buttons">
                     <button type="button" id="backIntro" class="back">Back</button>
                     <button type="button" id="backInput" class="back hidden">Back</button>
                     <!-- <input type="submit" id="next" value="Next"> -->
-                    <button type="submit" id="next">Next</button>
+                    <button type="button" id="next">Next</button>
+                    <button type="button" id="next2" class='hidden'>Next</button>
                     <input type="submit" id="submit" class="hidden">
                 </div>
                    
@@ -102,32 +113,77 @@
 
         </section>
 
-        <section id="output" class="hidden">
+        <section id="output" class="showing">
             <h1>So... <br> What happened <br> yesterday?</h1>
             
             <div id="phone">
                 <img src="images/emptyPhone.png" width="321" height="650" alt="empty phone">
 
                 <div id="messages">
-                    <p id="sender1" class="sender short">
-                        <span id="nameInput">name</span> hiiii
+                    <p id="sender1" class="sender">
+                        hiiii
                     </p>
 
-                    <p class="receiver long">?? it’s 11:30, where are you?</p>
+                    <p id="receiver1" class="receiver">?? it’s 11:30, where are you?</p>
 
-                    <p class="sender long">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+                    <p id="sender2" class="sender">IM at valentinese</p>
 
-                    <p class="receiver short">llamas? at valentines?</p>
+                    <p id="sender3" class="sender">eheheh there’s so many [plural noun] heree
+                    </p>
 
-                    <p class="sender short followup">yeASDS</p>
+                    <p id="receiver2" class="receiver ">llamas? at valentines?</p>
 
-                    <p class="sender long followup">oop s I acciden tly sat someone</p>
+                    <p id="sender4" class="sender  followup">yeASDS</p>
 
-                    <p class="sender long followup">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+                    <p id="sender5" class="sender followup">have I ever tellu how much I [verb] yu? yure so [adjective]</p>
 
-                    <p class="sender long followup">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+                    <p class="receiver">oh you’re drunk arent you</p>
 
-                    <p class="sender long followup last">ahahahah I’m at valentines, eheheh there’s so many llamas heree</p>
+                    <p class="sender followup">nOoooOO</p>
+
+                    <p class="sender followup">no</p>
+
+                    <p class="sender followup">i am soobert</p>
+
+                    <p class="sender followup">sober</p>
+
+                    <p class="sender followup">yesd</p>
+
+                    <p class="receiver">of course you are</p>
+
+                    <p class="sender followup">iw asnts ads</p>
+
+                    <p id="sender6" class="sender followup">i want [food]</p>
+
+                    <p id="receiver3" class="receiver">go get some [food]</p>
+
+                    <p id="sender7" class="sender">canniii i give u a [noun]</p>
+                    
+                    <p class="receiver followup">wait wat</p>
+
+                    <p id="receiver4" class="receiver followupNew">where did you get a [noun] from</p>
+
+                    <p class="sender followup">eheheh</p>
+
+                    <p class="sender followup">mgaiccc ✨✨</p>
+
+                    <p class="sender followup">oh h wiat</p>
+                    
+                    <p class="sender followupNew">I sjut remmemembberd smething</p>
+
+                    <p class="receiver followup">oh boy</p>
+
+                    <p class="receiver followupNew">what now</p>
+
+                    <p id="sender8" class="sender followup">i tolD [name] abtou the tiem you [verb] a [non]</p>
+
+                    <p class="sender followup">heh</p>
+
+                    <p class="receiver">okay I’m coming to get you give me your address
+                    </p>
+
+                    <p class="sender">okkkkikokoko</p>
+
                 </div>
             </div>
         </section>
