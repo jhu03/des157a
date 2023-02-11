@@ -48,46 +48,55 @@
                     <label for="personName">Name of someone you know</label>
                     <input type="text" id="personName" required>
 
-                    <label for="time">Random time</label>
+                    <label for="time">A random time</label>
                     <input type="text" id="time" required>
 
-                    <label for="event">Event</label>
+                    <label for="event">An event</label>
                     <input type="text" id="event" required>
 
-                    <label for="eventNoun">Plural noun</label>
+                    <label for="eventNoun">A plural noun</label>
                     <input type="text" id="eventNoun" required>
 
-                    <span>Page 1/2</span>
-
-                    <button id="next">Next</button>
+                    <p>Page 1/2</p>
                 </div>
-               
+
+                    <!-- <div id="buttons">
+                        <button id="backIntro" class="back">Back</button>
+                        <button id="next">Next</button>
+                    </div> -->
+                    
+
                 <div id="form2">
                     
-
-                    <label for="personVerb">Verb</label>
+                    <label for="personVerb">A verb</label>
                     <input type="text" id="personVerb" required>
 
-                    <label for="personAdj">Adjective</label>
+                    <label for="personAdj">An adjective</label>
                     <input type="text" id="personAdj" required>
                     
-                    <label for="food">Random Food</label>
+                    <label for="food">A food item</label>
                     <input type="text" id="food" required>
 
-                    <label for="item">Random object</label>
+                    <label for="item">A random object</label>
                     <input type="text" id="item" required>
 
                     <label for="eventNounAction">Past tense verb</label>
                     <input type="text" id="eventNounAction" required>
 
-                    <p>Page 1/2</p>
-
-                    <input type="submit" id="submit">
+                    <p>Page 2/2</p>
                 </div>
 
+                <div id="buttons">
+                    <button type="button" id="backIntro" class="back">Back</button>
+                    <button type="button" id="backInput" class="back hidden">Back</button>
+                    <!-- <input type="submit" id="next" value="Next"> -->
+                    <button type="submit" id="next">Next</button>
+                    <input type="submit" id="submit" class="hidden">
+                </div>
+                   
                 <!-- <button id="home">Back to Intro</button> -->
 
-                <input type="submit" id="submit" class="hidden">
+                <!-- <input type="submit" id="submit" class="hidden"> -->
             </form>
 
 
@@ -98,9 +107,11 @@
             
             <div id="phone">
                 <img src="images/emptyPhone.png" width="321" height="650" alt="empty phone">
-                <div id="messages">
 
-                    <p class="sender short">name hiiii</p>
+                <div id="messages">
+                    <p id="sender1" class="sender short">
+                        <span id="nameInput">name</span> hiiii
+                    </p>
 
                     <p class="receiver long">?? it’s 11:30, where are you?</p>
 

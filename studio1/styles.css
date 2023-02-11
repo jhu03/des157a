@@ -65,10 +65,11 @@ body {
     position: relative;
 }
 
-/* body {
+
+body {
     background-color: #222;
-    color: antiquewhite;
-} */
+    transition: backrgoundColor 5s ease-in-out;
+}
 
 #input img {
     position: absolute;
@@ -82,22 +83,24 @@ body {
     background-color: #F5F5F5;
     border-radius: 15px;
     color: #333;
-    padding: 40px 40px 20px;
     width: 35%;
 
     position: absolute;
     top: 90%;
     left: 45%;
+
 }
 
 #form1, #form2 {
     margin: auto;
+    padding: 40px 40px 0px;
 }
 
 h2 {
     font-size: 24px;
     font-weight: 550;
-    margin: 0px 0px 30px ;
+    margin: 0;
+    padding: 40px 0px 0px;
     text-align: center;
 }
 
@@ -110,7 +113,7 @@ label {
 
 }
 
-input {
+#form1 input, #form2 input {
     border: 1.5px solid transparent;
     border-radius: 5px;
     margin-bottom: 25px;
@@ -118,20 +121,54 @@ input {
     width: 95%;
 }
 
-input[type="text"]:focus {
+#form1 input[type="text"]:focus, #form2 input[type="text"]:focus {
     border: 1.5px solid #B2B2B5;
     outline: 0;
-
+    transition: border 250ms linear;
 }
 
 #input p {
-    color: #666;
+    color: #888;
     font-size: 0.8em;
-    align-content: center;
-    margin: auto;
+    text-align: center;
+    margin: 0;
 }
 
-#next {
+#buttons {
+    display: flex;
+    flex-direction: row;
+    border-radius: 0 0; 
+}
+
+#buttons button, #submit {
+    background-color: #F5F5F5;
+    border: 0;
+    border-top: 1px solid #B2B2B5;
+    color: #007AFF;
+    font-weight: 600;
+    margin: 20px 0 0;
+    padding: 23px;
+    width: 100%;
+    transition: color 0.2s ease-in-out;
+}
+
+#buttons button:hover, #submit:hover {
+    color: rgb(58, 58, 165);
+    cursor: pointer;
+}
+
+#buttons .back {
+    border-right: 1px solid #B2B2B5;
+    border-bottom-left-radius: 15px;
+}
+
+#buttons #next, #submit {
+    border-bottom-right-radius: 15px;
+}
+
+
+
+/* #next {
     background-color: #F5F5F5;
     border: 0;
     border-top: 1px solid #B2B2B5;
@@ -140,9 +177,9 @@ input[type="text"]:focus {
     margin-top: 20px;
     padding-top: 30px;
     width: 100%;
-}
+} */
 
-#submit {
+/* #submit {
     background-color: #F5F5F5;
     border: 0;
     border-top: 1px solid #B2B2B5;
@@ -150,7 +187,7 @@ input[type="text"]:focus {
     font-weight: 600;
     margin: 0;
     padding-top: 30px;
-}
+} */
 
 /* ---- outputs ----- */
 
@@ -196,6 +233,8 @@ input[type="text"]:focus {
     border-radius: 15px;
     margin: 15px 15px 20px auto;
     padding: 10px 15px;
+    width: fit-content;
+    max-width: 60%;
 }
 
 .receiver {
@@ -204,16 +243,17 @@ input[type="text"]:focus {
     color: #333;
     margin: 0px auto 20px 15px;
     padding: 10px 15px;
-    width: 60%;
+    width: fit-content;
+    max-width: 60%;
 }
 
-.short {
+/* .short {
     width: 30%;
 }
 
 .long {
     width: 60%;
-}
+} */
 
 .followup {
     margin: 5px 10px 5px auto;
@@ -221,4 +261,8 @@ input[type="text"]:focus {
 
 .last {
     margin-bottom: 20px;
+}
+
+#sender1 {
+    width: fit-content;
 }
