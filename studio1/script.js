@@ -209,22 +209,22 @@
         // subtituting user inputs into HTML
         contact.innerHTML = `${name}`
         sender1.innerHTML = `<u>${name}</u> hiiii`;
-        receiver1.innerHTML = `?? it’s <u>${time}</u>, where are you?`
+        receiver1.innerHTML = `?? It’s <u>${time}</u>, where are you?`
         sender2.innerHTML = `IM at <u>${event2}</u>`
         sender3.innerHTML = `Eheheh there’s so many <u>${eventNoun}</u> heree`;
         receiver2.innerHTML = `<u>${eventNoun}</u>? at <u>${event2}</u>??`;
         sender4.innerHTML = `Have I ever tellu how much I <u>${personVerb}</u> yu? yure so <u>${personAdj}</u>`
         sender5.innerHTML = `I want <u>${food}</u>`;
-        receiver3.innerHTML = `go get some <u>${food}</u>`;
+        receiver3.innerHTML = `Go get some <u>${food}</u>`;
         sender6.innerHTML = `Canniii i give u a <u>${item}</u>`;
         receiver4.innerHTML = `Where did you get a <u>${item}</u> from`;
         sender7.innerHTML = `i tolD <u>${person2}</u> abtou the tiem you <u>${person2Verb}</u> a <u>${person2Noun}</u>`;
 
 
         // animations
-        // researt button glow
-        const text = document.querySelector('#outputText1');
-        const text2 = document.querySelector('#outputText2');
+        
+        const text = document.querySelector('#outputHeader1');
+        const text2 = document.querySelector('#outputHeader2');
         const phone = document.querySelector('#phone');
 
         text.classList.add('fade');
@@ -232,10 +232,12 @@
             text2.className = 'fade';
         })
 
+        //phone animation palys after word animations end
         text2.addEventListener('animationend',function(){
             phone.className = 'moveUp';
         })
 
+        // researt button glow after phone animation ends
         phone.addEventListener('animationend', function(){
             restart.className = 'fadeLong';
             
@@ -251,11 +253,8 @@
                 restart.classList.add('glow');
             })
         })
-        
     })
 
-
-    
 
 // close IIFE
 }())
