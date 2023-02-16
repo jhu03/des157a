@@ -281,21 +281,62 @@ label {
     position: relative;
 }
 
-#loop {
+#loading {
+    display: flex;
     position: absolute;
-    right: 10%;
-    bottom: 0;
-    overflow: hidden;
-    width: 320px;
-    height: 500px;
+    gap: 8px;
+    right: 15%;
+    bottom: 15.6%;
+    /* width: 320px;
+    height: 500px; */
 }
 
-#loop img {
-    animation-name: loop;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+#circle1, #circle2, #circle3 {
+    width: 8px;
+    height: 8px;
+    background-color: #F8F8F8;
+    border-radius: 100px;
+}
+
+.circle1{
+    animation-name: circle1;
+    animation-duration: 0.4s;
+    /* animation-iteration-count: infinite; */
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
+}
+
+/* #circle2 {
+    animation-name: circle2;
+    animation-delay: 0.5s;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#circle3 {
+    animation-name: circle3;
+    animation-delay: 1s;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+} */
+
+@keyframes circle1 {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+}
+
+@keyframes circle2 {
+    0%, 100% {opacity: 0;}
+    50% {opacity: 1;}
+}
+
+@keyframes circle3 {
+    0%, 100% {opacity: 0;}
+    50% {opacity: 1;}
 }
 
 

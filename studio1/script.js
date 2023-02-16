@@ -255,6 +255,21 @@
         })
     })
 
+    const loading1 = document.querySelector('#circle1');
+    const loading2 = document.querySelector('#circle2');
+    const loading3 = document.querySelector('#circle3');
+    loading1.addEventListener('animationend',function(){
+        loading2.className = 'circle1'
+        loading1.classList.remove('circle1')
+    })
+    loading2.addEventListener('animationend',function(){
+        loading3.className = 'circle1'
+        loading2.classList.remove('circle1')
+    })
+    loading3.addEventListener('animationend',function(){
+        loading1.className = 'circle1'
+        loading3.classList.remove('circle1')
+    })
 
 // close IIFE
 }())

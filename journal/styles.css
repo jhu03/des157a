@@ -44,8 +44,16 @@ article {
 
     border-radius: 5px;
     padding: 50px;
-    width: 550px;
-    height: 550px;
+    width: 560px;
+    height: 560px;
+}
+
+#long article {
+    width: 1000px;
+}
+
+#long p {
+    margin-bottom: 0px;
 }
 
 article h2 {
@@ -75,7 +83,7 @@ a {
     column-count: 2;
     column-gap: 30px;
     column-fill: auto;
-    height: 470px;
+    height: 480px;
     margin-top: 10px;
 }
 
@@ -97,10 +105,22 @@ a {
     z-index: -1;
 }
 
-img {
+#vinyl img {
     height: 50%;
-    z-index: -1;
 } 
+
+.content img {
+    display: block;
+    height: 35%; 
+    width: auto;
+    margin: auto;
+}
+
+figcaption {
+    font-size: 0.7em;
+    margin: 5px auto;
+    text-align: center;
+}
 
 /* ----- footer ----- */
 
