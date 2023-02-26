@@ -1,0 +1,263 @@
+body {
+    color: #333;
+    font-family: 'Zilla Slab', serif;
+    font-size: 1.3em;
+
+    background-image: url(images/graph.png);
+    /* background-repeat: no-repeat; */
+    background-size: contain;
+
+    position: relative;
+
+        /* max-width: 100vw;
+    max-height: 100vh; */
+
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 600;
+    line-height: 1em;
+    margin-bottom: 20px;
+}
+
+figcaption {
+    margin: 10px auto;
+    width: fit-content;
+}
+
+.showing {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ------ grid styling ------ */
+#container {
+    display: grid;
+    grid-template-columns: 180px 180px 380px 180px 180px;
+    grid-template-rows: 90px 200px 200px 200px;
+
+    text-align: center;
+    align-items: end;
+    justify-content: space-evenly;
+
+    /* max-width: 100vw;
+    max-height: 100vh; */
+}
+
+#container img {
+    cursor: pointer;
+    transition: scale 0.5s ease-in-out;
+}
+
+.zoom {
+    scale: 1.15;
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#a {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
+}
+
+#a p {
+    margin: 0;
+}
+
+#b {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+#c {
+    grid-column: 1 / span 1;
+    grid-row: 3;
+}
+
+#d {
+    grid-column: 2 / span 1;
+    grid-row: 3;
+}
+
+#e {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+}
+
+#f {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#g {
+    grid-column:3;
+    grid-row: 4;
+}
+
+#g button {
+    background-color: #333;
+    color: #fff;
+    border-radius: 50px;
+    padding: 20px 80px;
+
+    margin: 0 auto;
+}
+
+#h {
+    grid-column: 4 / span 2;
+    grid-row: 2;
+}
+
+#i {
+    grid-column: 4 / span 1;
+    grid-row: 3;
+}
+
+#j {
+    grid-column: 5 / span 1;
+    grid-row: 3;
+}
+
+#k {
+    grid-column: 4 / span 2;
+    grid-row: 4;
+}
+
+/* ------ overlay styling ------ */
+#overlay {
+    position: absolute;
+    /* background-image: url(images/graph.png); */
+    background-color: beige;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    padding: 60px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    grid-template-rows: 90px 600px 30px;
+
+    text-align: center;
+    align-items: center;
+}
+
+#grid h2 {
+    grid-column: 2;
+    grid-row: 1;
+
+    font-size: 2.5em;
+    font-weight: 500;
+    padding: 150px 0 0;
+}
+
+#back {
+    grid-column: 1;
+    grid-row: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #525252;
+    padding: 5px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover{
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(5deg);
+}
+
+#mainimg {
+    grid-row: 2;
+}
+
+.description1 {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.3em;
+
+    grid-row: 2 / span 2;
+
+    margin: 0 30px;
+}
+
+.left1 {
+    transform: rotate(11deg);
+}
+
+.left2 {
+    transform: rotate(5deg);
+
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.left3 {
+    transform: rotate(-5deg);
+}
+
+.left4 {
+    transform: rotate(-11deg);
+    font-size: 1.5em;
+}
+
+#next {
+    grid-column: 2;
+    grid-row: 3;
+    margin-bottom: 90px;
+
+
+    opacity: 0;
+    animation-name: delay;
+    animation-duration: 1s;
+    animation-delay: 4.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#next button {
+    padding: 10px 30px;
+}
+
+#next button:hover {
+    transform: rotate(-5deg);
+}
+
+@keyframes delay {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+
+/* .description1 p {
+    animation-name: jitter;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+@keyframes jitter {
+    0%, 100% {transform: rotate(0.7deg);}
+    50% {transform: rotate(-0.1deg);}
+} */
