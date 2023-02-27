@@ -10,82 +10,102 @@
     const overlay = document.querySelector('#overlay');
     
 
-
-    // hover animation for each image
+    // hover animation for each image except for center image
     friends.forEach(function(img){
         img.addEventListener('mouseover', function(){
             if (img !== groupGif) {
                 img.classList.add('zoom');
             }
         })  
-
         img.addEventListener('mouseout', function(){
             img.classList.remove('zoom');
         })  
     })
 
-    // overlay appears on click, function for image and description change is called
+
+    // overlay appears on click, function for image change and description change is called
     selection.forEach(function(div){
         div.addEventListener('click', function(event){
             event.preventDefault();
             randomFont();
             overlay.className = 'showing';
-
-            const test = div.id;
-            changeImg(test);
+            next.className = 'delay';
+            
+            // image changes depending on the id of the div that is clicked on
+            changeImg(div.id);
         })
     })
 
+
+    let current = 0;
     // function for changing the image for each person and calling functions for changing person's name and descriptions
     function changeImg(person) {
         const theImg = document.querySelector('#mainimg img');
 
         switch (person) {
-            case 'b': 
+            case 'a': 
+                overlay.className ='hidden';
+                break;
+            case 'joanna': 
                 theImg.src = 'images/me.gif';
+                theImg.width = '360';
                 personAdj(joanna);
                 name('Joanna');
+                current = 0;
                 break;
-            case 'c': 
+            case 'char': 
                 theImg.src = 'images/char.gif';
                 theImg.width = '370';
                 personAdj(char);
                 name('Charlene');
+                current = 1;
                 break;
-            case 'd': 
+            case 'judy': 
                 theImg.src = 'images/judit.gif'; 
                 theImg.width = '325';
                 personAdj(judy);
                 name('Judy');
+                current = 2;
                 break;
-            case 'e': 
+            case 'kazim': 
                 theImg.src = 'images/kazim.gif'; 
                 theImg.width = '325';
                 personAdj(kazim);
                 name('Kazim');
+                current = 3;
                 break;
-            case 'h': 
+            case 'f': 
+                overlay.className ='hidden';
+                break;
+            case 'g': 
+                overlay.className ='hidden';
+                break;
+            case 'anthony': 
                 theImg.src = 'images/ant.gif';
                 theImg.width = '325'; 
                 personAdj(anthony);
                 name('Anthony');
+                current = 4;
                 break;
-            case 'i': 
+            case 'alana': 
                 theImg.src = 'images/llama.gif'; 
                 theImg.width = '360';
                 personAdj(alana);
                 name('Alana');
+                current = 5;
                 break;
-            case 'j': 
-                theImg.src = 'images/kazim.gif'; 
+            case 'alex': 
+                theImg.src = 'images/alex.gif'; 
                 personAdj(alex);
                 name('Alex');
+                current = 6;
                 break;
-            case 'k': 
-                theImg.src = 'images/thismol.gif'; 
+            case 'thi': 
+                theImg.src = 'images/thi.gif'; 
                 theImg.width = '260';
                 personAdj(thi);
                 name('Thi');
+                current = 7;
                 break;
             }
     }
@@ -96,20 +116,40 @@
     back.addEventListener('click', function(event){
         event.preventDefault();
         overlay.className = 'hidden';
-        overlay.classList.add('zoomout');
+        next.classList.remove('delay');
     })
 
     window.addEventListener('click', function(event) {
         if (event.target == overlay) {
             overlay.className = 'hidden';
+            next.classList.remove('delay');
         }
       })
 
     document.addEventListener('keydown', function(event){
         if (event.key === 'Escape'){
             overlay.className = 'hidden';
+            next.classList.remove('delay');
         }
     })
+   
+    // function for changing the descriptions for each person by replacing the inner HTML
+    // i is used to call the index in the description array. the if statement is used as an counter to increase the index number
+    function personAdj(person){
+        let i =0 ;
+        descriptions.forEach(function(p){
+        if (i == i) {
+            p.innerHTML = person[i];
+            i++;
+        }
+    })
+    }
+
+    // function for replacing the name on the overlay screen
+    function name(name) {
+        const person = document.querySelector('span');
+        person.innerHTML = name;
+    }
 
     // random font weight and size for person descriptions
     function randomFont() {
@@ -129,7 +169,6 @@
         p.style.fontSize = size(0.8,1.3) + 'em';
     })
     }
-   
 
     // arrays for descriptions of each person
     const joanna = [
@@ -219,45 +258,41 @@
         'Sleeping KitKat snowman',
         'The zoomer'
     ];
-   
-    // function for changing the descriptions for each person by replacing the inner HTML
-    // i is used to call the index in the description array. the if statement is used as an counter to increase the index number
-    function personAdj(person){
-        let i =0 ;
-        descriptions.forEach(function(p){
-        if (i == i) {
-            p.innerHTML = person[i];
-            i++;
-        }
-    })
-    }
 
-    // function for replacing the name on the overlay screen
-    function name(name) {
-        const person = document.querySelector('span');
-        person.innerHTML = name;
-        console.log(name);
-    }
-    
+
+    // next button 
     const next = document.querySelector('#next');
+    const nameList = ['joanna', 'char', 'judy', 'kazim', 'anthony', 'alana', 'alex', 'thi']
+    const descriptionList = [joanna, char, judy, kazim, anthony, alana, alex, thi]
 
     next.addEventListener('click', function(){
+        next.classList.remove('delay');
 
+        console.log(current);
+        current++;
+        if (current > (nameList.length-1)) {
+            current = 0;
+        } 
+        name(nameList[current]);
+        personAdj(descriptionList[current]);
+        changeImg(nameList[current])
+        randomFont();
+        
     })
 
     //attempt at randomize button
-    const list = ['joanna', 'judy', 'char', 'thi', 'anthony', 'alana', 'alex', 'kazim']
 
-    function randomPerson(min, max){
-        min = Math.ceil(min);
-        max = Math.floor(max);
 
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+    // function randomPerson(min, max){
+    //     min = Math.ceil(min);
+    //     max = Math.floor(max);
 
-    const randomize = document.querySelector('#g button');
-    randomize.addEventListener('click', function(){
-        console.log(list[randomPerson(0,7)]);
-    });
+    //     return Math.floor(Math.random() * (max - min + 1) + min);
+    // }
+
+    // const randomize = document.querySelector('#g button');
+    // randomize.addEventListener('click', function(){
+    //     console.log(list[randomPerson(0,7)]);
+    // });
 
 }());
