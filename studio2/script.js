@@ -4,6 +4,7 @@
     console.log('reading js');
 
     const friends = document.querySelectorAll('#container img');
+    const groupGif = document.querySelector('#f img')
     const selection = document.querySelectorAll('#container div');
     const descriptions = document.querySelectorAll('.description1 p');
     const overlay = document.querySelector('#overlay');
@@ -13,7 +14,9 @@
     // hover animation for each image
     friends.forEach(function(img){
         img.addEventListener('mouseover', function(){
-            img.classList.add('zoom');
+            if (img !== groupGif) {
+                img.classList.add('zoom');
+            }
         })  
 
         img.addEventListener('mouseout', function(){
@@ -23,7 +26,9 @@
 
     // overlay appears on click, function for image and description change is called
     selection.forEach(function(div){
-        div.addEventListener('click', function(){
+        div.addEventListener('click', function(event){
+            event.preventDefault();
+            randomFont();
             overlay.className = 'showing';
 
             const test = div.id;
@@ -88,18 +93,27 @@
     // function for back button on click and Esc
     const back = document.querySelector('#back');
 
-    back.addEventListener('click', function(){
+    back.addEventListener('click', function(event){
+        event.preventDefault();
         overlay.className = 'hidden';
+        overlay.classList.add('zoomout');
     })
 
+    window.addEventListener('click', function(event) {
+        if (event.target == overlay) {
+            overlay.className = 'hidden';
+        }
+      })
+
     document.addEventListener('keydown', function(event){
-        if (event.key == 'Escape'){
+        if (event.key === 'Escape'){
             overlay.className = 'hidden';
         }
     })
 
     // random font weight and size for person descriptions
-    descriptions.forEach(function(p){
+    function randomFont() {
+        descriptions.forEach(function(p){
         function weight(min,max) {
             min = Math.ceil(min);
             max = Math.floor(max);
@@ -108,12 +122,14 @@
         }
 
         function size(min,max) {
-            return (Math.random() * (max - min + 1) + min);
+            return (Math.random() * (max - min) + min);
         }
 
         p.style.fontWeight = weight(4,7);
-        p.style.fontSize = size(0.71,0.72) + 'em';
+        p.style.fontSize = size(0.8,1.3) + 'em';
     })
+    }
+   
 
     // arrays for descriptions of each person
     const joanna = [
@@ -122,20 +138,24 @@
         'Master of the two finger stab', 
         'woman of few words, and smart',
         'attentive creator',
-        'Super social master chef'
+        'Super social master chef',
+        'The observant watcher',
+        'searching for cereal'
     ];
 
     const judy = [
-        'sheesh, whatanerd AND a chef', 
+        '80% cat, 20% nerd', 
         'hackerman puzzler',
         'stronk coder cat', 
         'Big Brain Biggusus', 
         'master hacker and coder',
+        'The tech lead',
         'Hacker cat master chef',
-        'my hobbies are too expensive'
+        '"my hobbies are too expensive"'
     ];
 
     const char = [
+        'The artist',
         'talented animator, feather collector', 
         'meme collector + THE artist', 
         'kickable', 
@@ -149,19 +169,21 @@
         'Doggo mom ', 
         'the responsible one', 
         'Big brain nurse doctor',
-        'data storage capacity unlimited, logical, dying', 
-        'voice of concern',
         'fake nurse',
+        'Mom',
+        'voice of concern',
+        'data storage capacity unlimited, dying', 
         'diligent doctor'
     ];
 
     const anthony = [
         'when you least expect it', 
         '“the snack that smiles back”', 
-        'wandering brit with iconic lines',
+        'Happy to be here',
         'the man, myth, legend himself',
         'marvel-ous planner',
         'Aladdin and his magic carpet',
+        'wandering brit with iconic lines',
         'Yessir man gamer'
     ];
 
@@ -172,7 +194,8 @@
         'innocent llama, very sweet',
         'curious engineer',
         '“judddyyyyyyy”',
-        'Secret drunk serial killer'
+        'Secret drunk serial killer',
+        'The encouraging mint'
     ];
 
     const alex = [
@@ -182,6 +205,7 @@
         'poofed', 
         'cool funny guy, puppy-like',
         'white pants slippery shoes',
+        'The player',
         'Big brain gamer man'
     ];
 
@@ -192,7 +216,8 @@
         'old man only eats beige',
         'Abraham Lincoln loves chicken',
         'Stanford', 
-        'Sleeping KitKat snowman'
+        'Sleeping KitKat snowman',
+        'The zoomer'
     ];
    
     // function for changing the descriptions for each person by replacing the inner HTML
@@ -214,7 +239,7 @@
         console.log(name);
     }
     
-    const next = document.querySelector('#next button');
+    const next = document.querySelector('#next');
 
     next.addEventListener('click', function(){
 
