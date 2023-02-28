@@ -3,7 +3,8 @@ body {
     font-family: 'Zilla Slab', serif;
     font-size: 1.3em;
 
-    background-image: url(images/graph.png);    background-size: contain;
+    background-image: url(images/graph.png);    
+    background-size: contain;
 
     position: relative;
 }
@@ -225,7 +226,7 @@ img {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.6;
+    opacity: 0.55;
 }
 
 #f img {
@@ -235,6 +236,11 @@ img {
 #g {
     grid-column:3;
     grid-row: 3;
+}
+
+#g p {
+    font-weight: 400;
+    padding: 0;
 }
 
 #anthony {
@@ -292,7 +298,7 @@ button, a {
     background-color: transparent;
     border: none;
     border-radius: 8px;
-    color: #565656;
+    color: #666666;
 
     transition: all 0.3s ease-in-out;
 }
@@ -311,7 +317,7 @@ button:hover, a:hover{
     justify-self: flex-start;
 
     margin-top: 25px;
-    padding: 5px 15px;
+    padding: 10px 15px;
 }
 
 #mainimg {
