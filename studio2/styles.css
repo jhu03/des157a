@@ -27,11 +27,6 @@ img {
     height: auto;
 }
 
-/* .btn {
-    background-color: #333;
-    color: #fff;
-} */
-
 .showing {
     visibility: visible;
     opacity: 1;
@@ -41,6 +36,20 @@ img {
     visibility: hidden;
     opacity: 0;
 }
+
+#portal {
+    position: absolute;
+    left: 2%;
+    top: 2%;
+
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    margin-top: 10px;
+    padding: 10px 15px;
+}
+
 
 /* ------ intro styling ------ */
 .overlay {
@@ -143,11 +152,11 @@ img {
 
 #container img {
     cursor: pointer;
-    transition: scale 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .zoom {
-    scale: 1.15;
+    transform: scale(1.15);
 }
 
 #a {
@@ -279,7 +288,7 @@ img {
     margin: 0;
 }
 
-button {
+button, a {
     background-color: transparent;
     border: none;
     border-radius: 8px;
@@ -288,7 +297,7 @@ button {
     transition: all 0.3s ease-in-out;
 }
 
-button:hover{
+button:hover, a:hover{
     background-color: #333;
     color: #fff;
     cursor: pointer;

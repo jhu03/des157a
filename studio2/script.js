@@ -9,42 +9,26 @@
     const caption = document.querySelectorAll('#container figcaption');
     const descriptions = document.querySelectorAll('.description1 p');
     const modal = document.querySelector('#modal');
+
+
+    // portal page button
+    const portal = document.querySelector('click', function(){
+        window.location = '"https://jhu03.github.io/des157a/';
+    })
     
 
     // hover animation for each image except for center image
-    // function zoom() {
-        friends.forEach(function(img){
-            img.addEventListener('mouseover', function(event){
-                if (img !== groupGif) {
-                    img.classList.add('zoom');
-                //    highlight(img); 
-                }
-                
-                
-            })  
-            img.addEventListener('mouseout', function(){
-                img.classList.remove('zoom');
-            })  
-            // highlight(img)
-        })
-    // }
-
-    
-    // function highlight(img){
-    caption.forEach(function(caption){
-
-            if (friends.className = 'zoom'){
-                caption.className = 'btn';
-            } else {
-                caption.classList.remove('btn');
-            }     
-    
+    friends.forEach(function(img){
+        img.addEventListener('mouseover', function(event){
+            if (img !== groupGif) {
+                img.classList.add('zoom');
+            }
+        })  
+        img.addEventListener('mouseout', function(){
+            img.classList.remove('zoom');
+        })  
     })
-    // }   
 
-
-
-    
 
     // overlay appears on click, function for image change and description change is called
     selection.forEach(function(div){
@@ -70,9 +54,9 @@
         event.preventDefault();
         intro.classList.add('showing');
         intro.classList.remove('hidden');
-
         groupGif.className = 'hidden';
     })
+
 
     // exits info overlay
     const meet = document.querySelector('#meet');
@@ -163,10 +147,11 @@
                 name('Thi');
                 current = 7;
                 break;
-            }
+        }
     }
 
-    // function for back button on click and Esc
+
+    // function for back button on click 
     const back = document.querySelector('#back');
 
     back.addEventListener('click', function(event){
@@ -178,6 +163,7 @@
         next.classList.remove('delay');
     })
 
+    // function for back button when Escape key is pressed
     document.addEventListener('keydown', function(event){
             if (event.key === 'Escape'){
                 modal.classList.add('hidden');
@@ -192,6 +178,7 @@
             }
     })
 
+
     // overlay closes when user clicks outside of overlay window
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
@@ -200,9 +187,8 @@
             next.classList.remove('delay');
         }
 
-        // event listener for closing info overlay
+        // event listener for closing info overlay when user clicks outside of overlay window
         if (event.target == intro) {
-            // overlay.classList.add('hidden');
             intro.classList.add('hidden');
             intro.classList.remove('showing');
             groupGif.classList.remove('hidden');
@@ -210,7 +196,6 @@
     })
 
     
-   
     // function for changing the descriptions for each person by replacing the inner HTML
     // i is used to call the index in the description array, which each description being one item in the array. the i-counter increases by 1 to move onto the next description after one description is put into the HTML
     // function paramater is called in the switch case above
@@ -222,11 +207,13 @@
     })
     }
 
+
     // function for replacing the name on the overlay screen. Name parameter is called in the switch case above
     function name(name) {
         const person = document.querySelector('span');
         person.innerHTML = name;
     }
+
 
     // random font weight and size for person descriptions
     function randomFont() {
@@ -240,7 +227,7 @@
         }
 
         function size(min,max) {
-            // remove the +1 so the raw parameters are taken
+            // remove the +1 so the raw parameters of font sizes are taken
             return (Math.random() * (max - min) + min);
         }
 
@@ -249,102 +236,107 @@
     })
     }
 
-    // arrays for descriptions of each person. each description is its own item
+
+    // arrays for descriptions of each person. each description is its own item in the array, so it can be indexed and added into the HTML with the personAdj function above
     const joanna = [
         'heh nerd', 
-        'chill, always wondering "why?"', 
-        'Master of the two finger stab', 
-        'woman of few words, and smart',
+        'chill, always <br> wondering "why?"', 
+        'Master of the <br> two finger stab', 
+        'woman of few words, <br> and smart',
         'attentive creator',
-        'Super social master chef',
-        'The observant watcher',
-        'searching for cereal'
+        'Super social <br> master chef',
+        'The observant <br> watcher',
+        'searching <br> for cereal'
     ];
 
     const judy = [
         '80% cat, 20% nerd', 
         'hackerman puzzler',
         'stronk coder cat', 
-        'Big Brain Biggusus', 
-        'master hacker and coder',
+        'Big Brain <br> Biggusus', 
+        'master hacker <br> and coder',
         'The tech lead',
-        'Hacker cat master chef',
-        '"my hobbies are too expensive"'
+        'Hacker cat <br> master chef',
+        '"my hobbies are <br> too expensive"'
     ];
 
     const char = [
         'The artist',
-        'talented animator, feather collector', 
-        'meme collector + THE artist', 
+        'talented animator, <br> feather collector', 
+        'meme collector <br> + THE artist', 
         'kickable', 
-        'Artista and orchestra',
+        'Artista and <br> orchestra',
         'memeful artist',
-        'dead inside, master artist',
+        'dead inside, <br> master artist',
         'Op artist'
     ];
 
     const thi = [
-        'Doggo mom ', 
-        'the responsible one', 
-        'Big brain nurse doctor',
+        'Doggo mom', 
+        'the <br> responsible one', 
+        'Big brain <br> nurse doctor',
         'fake nurse',
         'Mom',
         'voice of concern',
-        'data storage capacity unlimited, dying', 
+        'data storage capacity <br> unlimited, dying', 
         'diligent doctor'
     ];
 
     const anthony = [
-        'when you least expect it', 
-        '“the snack that smiles back”', 
+        'when you least <br> expect it', 
+        '“the snack that <Br> smiles back”', 
         'Happy to be here',
-        'the man, myth, legend himself',
+        'the man, myth, <br> the legend himself',
         'marvel-ous planner',
-        'Aladdin and his magic carpet',
-        'wandering brit with iconic lines',
+        'Aladdin and his <br> magic carpet',
+        'wandering brit <br> with iconic lines',
         'Yessir man gamer'
     ];
 
     const alana = [
         'llama', 
-        'golden retriever energy', 
+        'golden retriever <br> energy', 
         'taller than me', 
-        'innocent llama, very sweet',
+        'innocent llama, <br> very sweet',
         'curious engineer',
         '“judddyyyyyyy”',
-        'Secret drunk serial killer',
-        'The encouraging mint'
+        'Secret drunk <br> serial killer',
+        'The <br> encouraging mint'
     ];
 
     const alex = [
         'poggers gamer', 
-        'the original meme™ "wowie"', 
-        'smart, likes dragons, amusing',
+        'the original <br> meme™ "wowie"', 
+        'smart, likes <br> dragons, amusing',
         'poofed', 
-        'cool funny guy, puppy-like',
-        'white pants slippery shoes',
+        'cool funny guy, <br> puppy-like',
+        'white pants <br> slippery shoes',
         'The player',
-        'Big brain gamer man'
+        'Big brain <br> gamer man'
     ];
 
     const kazim = [
         'Kitkat, tall', 
-        'mammoth mammoth',
+        'mammoth <br> mammoth',
         'Jesus', 
-        'old man only eats beige',
-        'Abraham Lincoln loves chicken',
+        'old man only <br> eats beige',
+        'Abraham Lincoln <br> loves chicken',
         'Stanford', 
-        'Sleeping KitKat snowman',
+        'Sleeping KitKat <br> snowman',
         'The zoomer'
     ];
 
 
-    // next button function
+    // function for when the user clicks next
     const next = document.querySelector('#next');
+
+    // nameList is an array of stirngs so it can be indexed by the name function to replace the person's name in "Who's [name]"
+    // it can also indexed by the changeImg function since the switch case is checking for the name of the div that was clicked on, which are the same as the items in the nameList array
     const nameList = ['joanna', 'char', 'judy', 'kazim', 'anthony', 'alana', 'alex', 'thi']
+
     const descriptionList = [joanna, char, judy, kazim, anthony, alana, alex, thi]
 
-    
+    // counter function so the user sees the following item in the array after Next is clicked
     next.addEventListener('click', function(){
         current++;
         if (current > (nameList.length-1)) {
@@ -356,7 +348,6 @@
         randomFont();
 
         next.className = 'delay';
-        
     })
 
 }());
