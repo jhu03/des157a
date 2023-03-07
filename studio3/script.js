@@ -109,6 +109,10 @@
             })
 
             document.getElementById('pass').addEventListener('click', function(){
+                const pass = new Audio ('sounds/scrape.mp3');
+
+                pass.play();
+
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
                 setUpTurn();
             })
@@ -160,7 +164,7 @@
 
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
 
-        const blockPlace = new Audio ('sounds/test.mp3');
+        const blockPlace = new Audio ('sounds/blockPlace.mp3');
 
         for (let i=1; i <= gameData.rollSum; i++) {
             
