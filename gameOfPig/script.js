@@ -44,7 +44,7 @@
     })
 
     function setUpTurn() {
-        // game1.innerHTML = `<p>Roll the dice for the ${gameData.players[gameData.index]} </p>`;
+        
         actionArea.innerHTML = '<button id="roll"> Roll the Dice </button>';
         document.getElementById('roll').addEventListener('click', function(){
             throwDice();
@@ -89,7 +89,7 @@
         } 
         // if either die is a 1...
         else if (gameData.roll1 === 1 || gameData.roll2 === 1){
-            // console.log('one of the two dice was a 1');
+
             // switch player by looking that true/false of statement
             gameData.index ? (gameData.index = 0) : (gameData.index = 1);
             actionArea.innerHTML += `<p>Sorry, one of your rolls was a one, switching to ${gameData.players[gameData.index]}</p>`;
@@ -98,11 +98,9 @@
 
         // if neither die is a 1...
         else {
-            // console.log("the game proceeds");
-            gameData.score[gameData.index] += gameData.rollSum;
-            
 
-            // gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.rollSum;
+            gameData.score[gameData.index] += gameData.rollSum;
+
 
             actionArea.innerHTML = '<button id="rollagain">Roll Again</button> or <button id="pass">Pass</button>';
 
