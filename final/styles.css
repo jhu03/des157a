@@ -1,0 +1,32 @@
+body {
+    color: #333;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.7em;
+    margin: 10% 25%;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 60px;
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-top: 60px;
+}
+
+#summary {
+    background-color: rgb(215, 236, 255);
+    border-radius: 8px;
+    padding: 25px 45px;
+}
+
+#summary h2{
+    margin-top: 20px;
+}
+
+strong {
+    background-color: rgb(187, 223, 255);
+    font-weight: 500;
+    padding: 3px;
+}
