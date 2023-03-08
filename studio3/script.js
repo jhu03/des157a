@@ -23,7 +23,7 @@
     };
 
     let numBlocks1 = 0;
-    let numBlocks2 = 0
+    let numBlocks2 = 0;
 
     startGame.addEventListener('click', function(){
         // randomly set game index here...
@@ -166,16 +166,27 @@
 
         const blockPlace = new Audio ('sounds/blockPlace.mp3');
 
-        for (let i=1; i <= gameData.rollSum; i++) {
+        for (let i=0; i < gameData.rollSum; i++) {
             
             if (gameData.index + 1 == 1) {
+                console.log("INSIDE IF")
                 blocks.innerHTML += `<div id="block${numBlocks1}" class="blocks"></div>`;
+
+                // document.getElementById(`block${numBlocks1}`).style.backgroundColor = colors[color(1,4)];
+
+                document.getElementById(`block${numBlocks1}`).style.opacity = color(1,10);
 
                 document.getElementById(`block${numBlocks1}`).style.bottom = `${numBlocks1 * 25}px`;
                 blockPlace.play();
                 numBlocks1 += 1;
             } else {
+                console.log("INSIDE ELSE")
                 blocks.innerHTML += `<div id="block${numBlocks2}" class="blocks"></div>`;
+
+
+                // document.getElementById(`block${numBlocks2}`).style.backgroundColor = colors[color(1,4)];
+
+                document.getElementById(`block${numBlocks2}`).style.opacity = color(1,10);
 
                 document.getElementById(`block${numBlocks2}`).style.bottom = `${numBlocks2 * 25}px`;
 
@@ -193,6 +204,18 @@
         } else {
             actionArea.style.gridColumn = "2 / span 1";
         }
+    }
+
+    // const colors = ['#F0F0F0', '#ABB0B7', '#CDDEF1', '#F1C8E1', '#1E1E1E'];
+    // const colors = ['0.1', '0.2', '#0.', '#F1C8E1', '#1E1E1E'];
+    function color(min, max) {
+        
+
+        min = Math.ceil(min);
+        max = Math.floor(max);
+
+        // multiply by 100 because the weight are written in 00's
+        return Math.floor(Math.random() * (max - min + 1) + min) * 0.1;
     }
 
 }());

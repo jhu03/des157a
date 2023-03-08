@@ -30,3 +30,15 @@ strong {
     font-weight: 500;
     padding: 3px;
 }
+
+#compBg {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    margin-top: 60px;
+}
+
+#compBg h2 {
+    margin-top: 0;
+}
