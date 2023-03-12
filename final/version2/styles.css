@@ -7,7 +7,6 @@ body {
     height: 100vh;
 
     position: relative;
-    overflow: hidden;
 }
 
 .showing {
@@ -19,7 +18,7 @@ body {
 .hidden {
     opacity: 0;
     visibility: hidden;
-    display: none;
+    /* display: none; */
 }
 
 .overlayBg {
@@ -108,6 +107,7 @@ div {
 
     position: relative;
     padding: 0;
+    overflow: hidden;
 }
 
 #game1, #game2 {
@@ -139,10 +139,10 @@ div {
 /* ------ gameplay blocks section ------ */
 #blocks1, #blocks2 {
     /* border-top: 1px #333 dashed; */
-    height: 500px;
+    height: 80vh;
 
     position: relative;
-    bottom: 4%;
+    bottom: 16%;
 
     transition: all 5s ease-in-out;
 }
@@ -172,6 +172,7 @@ div {
 .appear {
     animation-name: pop;
     animation-duration: 1s;
+    /* animation-delay: 1s; */
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
@@ -180,6 +181,20 @@ div {
 @keyframes pop {
     0% {transform: scale(0);}
     100% {transform: scale(1);}
+}
+
+.disappear {
+    animation-name: poof;
+    animation-duration: 1s;
+    /* animation-delay: 1s; */
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes poof {
+    0% {transform: scale(1);}
+    100% {transform: scale(0);}
 }
 
 /* ------ player actions section ------ */
@@ -198,7 +213,7 @@ div {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 7vh;
+    height: 9vh;
     padding: 20px 0; 
 }
 

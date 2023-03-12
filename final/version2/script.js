@@ -27,7 +27,8 @@
 
     startGame.addEventListener('click', function(){
         // randomly set game index here...
-        gameData.index = Math.round(Math.random());
+        // gameData.index = Math.round(Math.random());
+        gameData.index = 0;
         console.log('index:' + gameData.index);
 
         gameControl.className = 'showing';
@@ -55,8 +56,10 @@
 
     function throwDice(){
         actionArea.innerHTML = '';
-        gameData.roll1 = Math.floor(Math.random() * 4) + 1;
-        gameData.roll2 = Math.floor(Math.random() * 4) + 1; 
+        gameData.roll1 = Math.floor(Math.random() * 6);
+        gameData.roll2 = 0 
+
+        // gameData.roll2 = Math.floor(Math.random() * 3) + 2; 
 
         gameData.rollSum = gameData.roll1 + gameData.roll2;
 
@@ -66,28 +69,28 @@
         console.log("sum " + gameData.rollSum);
 
         // if two 1's are rolled...
-        if (gameData.rollSum === 2) {
-            actionArea.innerHTML += '<p>Oh snap! Snake eyes!</p>';
-            gameData.score[gameData.index] = 0;
+        // if (gameData.rollSum === 2) {
+        //     actionArea.innerHTML += '<p>Oh snap! Snake eyes!</p>';
+        //     gameData.score[gameData.index] = 0;
 
-            // empties blocks from screen and resets nubmer of blocks
-            document.querySelector(`#blocks${gameData.index + 1}`).innerHTML = ''; 
-            gameData.numBlocks[gameData.index] = 0;
+        //     // empties blocks from screen and resets nubmer of blocks
+        //     document.querySelector(`#blocks${gameData.index + 1}`).innerHTML = ''; 
+        //     gameData.numBlocks[gameData.index] = 0;
 
+        //     // switch player by looking that true/false of statement
+        //     gameData.index ? (gameData.index = 0) : (gameData.index = 1);
+
+        //     // show current score
+        //     setTimeout(setUpTurn, 2000);
+        //     showCurrentWinningScore();  
+        // } 
+
+        // if either die is a 0...
+        if (gameData.roll1 === 0){
             // switch player by looking that true/false of statement
             gameData.index ? (gameData.index = 0) : (gameData.index = 1);
 
-            // show current score
-            setTimeout(setUpTurn, 2000);
-            showCurrentWinningScore();  
-        } 
-
-        // if either die is a 1...
-        else if (gameData.roll1 === 1 || gameData.roll2 === 1){
-            // switch player by looking that true/false of statement
-            gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-
-            actionArea.innerHTML += `<p>Sorry, one of your rolls was a one, switching to ${gameData.players[gameData.index]}</p>`;
+            actionArea.innerHTML += `<p>Sorry, one of your rolls was a zero, switching to ${gameData.players[gameData.index]}</p>`;
 
             setTimeout(setUpTurn, 2000);
         }
@@ -96,7 +99,7 @@
         else {
 
             gameData.score[gameData.index] += gameData.rollSum;
-            blockGen(); // generates blocks based on rolls
+            create(); // generates blocks based on rolls
             backgroundMove(); // moves the background based on number of blocks rolled
 
             actionArea.innerHTML = '<button id="rollagain">Roll Again</button> or <button id="pass">Pass</button>';
@@ -110,6 +113,7 @@
 
                 pass.play();
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
+                // gameData.rollSum = 0;
                 setUpTurn();
             })
             
@@ -119,44 +123,85 @@
     }
 
 
+    //creates the blocks
+    function create() {
+         // create blocks; loops for every number in a roll
+		for (let i = 0; i < gameData.rollSum; i++) {
+            if (i !== 0) {
+                setTimeout(() => {
+				blockGen();
+			}, 1000);
+
+
+            } else {
+                blockGen();
+            }
+            // pauses after each block creation
+		}
+
+	}
+
+
     //blocks generator
     function blockGen (){
 
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
+        // let blockPlaced = document.querySelector(`block${gameData.numBlocks[gameData.index]}`);
 
         const blockPlace = new Audio('sounds/blockPlace.mp3');
                
-        // create blocks; loops for every number in a roll
-        for (let i=0; i < gameData.rollSum; i++) {
+        // makes sure the first block placed is the same for both players
+        if (gameData.numBlocks[gameData.index] === 0) {
 
-            // makes sure the first block placed is the same for both players
-            if (gameData.numBlocks[gameData.index] === 0) {
-                blocks.innerHTML += `<div id="block${gameData.numBlocks[gameData.index]}" class="blocks appear"><img src=${blockImg[0]}></div>`;
+            blocks.innerHTML += `
+                <div 
+                    id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
+                    style="bottom: ${gameData.numBlocks[gameData.index] * 88}px;">
 
-            } else {
-                blocks.innerHTML += `<div id="block${gameData.numBlocks[gameData.index]}" class="blocks appear"><img src="${blockImg[randomNum(1,blockImg.length-1)]}" width="168" height="88" alt="tower block"></div>`;
+                    <img src=${blockImg[0]}>
+                </div>`;
 
-                // random location of block placement
-                document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.left = `${randomNum(25, 45)}%`;
-            }
+        } else {
+            blocks.innerHTML += `
+                <div 
+                    id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
+                    style="left: ${randomNum(25, 45)}%; 
+                    bottom: ${gameData.numBlocks[gameData.index] * 88}px;">
+                    
+                    <img src="${blockImg[randomNum(1,blockImg.length-1)]}" width="168" height="88" alt="tower block">
+                </div>`;
 
-            // POSSIBLE ERROR: the style doesn't get applied to every block generated and I'm not sure why. It only happens for Player 2 and often when Player 1 passes their turn to Player 2. 
-            document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.bottom = `${gameData.numBlocks[gameData.index] * 88}px`;
 
-            // checking if the line above runs
-            console.log('styled');
-
-            // let blockNum = document.getElementById(`block${gameData.numBlocks[gameData.index]}`);
-
-            // blockNum.addEventListener('animationstart', function(){
-            //     blockNum.classList.remove('appear');
-            // });
-
-            blockPlace.play();
-            gameData.numBlocks[gameData.index] += 1;
-
-            console.log(`Player ${gameData.index + 1} numBlock ${gameData.numBlocks[gameData.index]}`)
+            // random location of block placement
+            // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.left = `${randomNum(25, 45)}%`;
         }
+
+        // POSSIBLE ERROR: the style doesn't get applied to every block generated and I'm not sure why. It only happens for Player 2 and often when Player 1 passes their turn to Player 2. 
+        console.log("placed " + gameData.numBlocks[gameData.index] + " blocks for player " + gameData.index);
+
+        // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.bottom = `${gameData.numBlocks[gameData.index] * 88}px`;
+
+        console.log( document.getElementById(`block${gameData.numBlocks[gameData.index]}`));
+
+
+        // checking if the line above runs
+        console.log('styled');
+
+        blockPlace.play();
+        gameData.numBlocks[gameData.index] += 1;
+
+        console.log(`Player ${gameData.index + 1} numBlock ${gameData.numBlocks[gameData.index]}`)
+
+        // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).classList.remove('appear');
+
+        // const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
+
+		// console.log(reduceHeight, `blocks${gameData.index + 1}`);
+
+		// document.getElementById(
+		// 	`blocks${gameData.index + 1}`
+		// ).style.bottom = `${reduceHeight}px`;
+        
     }
 
     function checkWinningCondition() {
@@ -166,8 +211,10 @@
 
             score.classList.add('showing');
             score.classList.remove('hidden');
+
             scoreCard.innerHTML += `<h2>${gameData.players[gameData.index]} wins with ${gameData.score[gameData.index]} points!</h2>`;
             scoreCard.innerHTML += '<button id="restart">Start a New Game?</button>';
+
             document.querySelector('#restart').addEventListener('click', function(){
                 location.reload();
             });
@@ -228,18 +275,33 @@
 
     // function for moving background and stuff
     let position = 1;
+    const num = gameData.numBlocks[gameData.index];
 
     function backgroundMove() {
         const backgroundImage = document.querySelector(`#game${gameData.index+1}`);
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
+        const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
 
-        // moving the screen and blocks if there are 6 blocks. This only works once when there are 6 blocks
-        if (gameData.numBlocks[gameData.index] %6) {
-            backgroundImage.style.backgroundPositionY = `${position * 80}%`;
-            blocks.style.transform = `translateY(${gameData.numBlocks[gameData.index]%6} * 352px)`;
+        // moving the screen and blocks if there are 6 blocks
+        // switch (gameData.numBlocks[gameData.index]){
+        //     case 6: 
+        //         backgroundImage.style.backgroundPositionY = `1400px`;
+        //         blocks.style.bottom = `${reduceHeight}px`;
+        //         break;
+        //     case 7:
+        //         backgroundImage.style.backgroundPositionY = `1488px`;
+        //         blocks.style.bottom = `${reduceHeight}px`;
+        //         break;
+
+        // }
+
+
+        if (gameData.rollSum >= 6) {
+            // backgroundImage.style.backgroundPositionY = `${position * 89}px`;
+            blocks.style.bottom = `${reduceHeight}px`;
 
             position++;
-        }
+        } 
     }
 
 
