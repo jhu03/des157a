@@ -53,6 +53,8 @@
                  document.getElementById('gameDivider2}').classList.remove('showing');
                 document.getElementById('gameDivider2}').classList.add('hiddenSmooth');
             }
+
+            // document.getElementById('startgame').classList.remove('showing');
             
            
         });
@@ -259,17 +261,23 @@
     }
 
     function showRoll(){
-        const game1Roll = document.querySelector(`#game1 .currentRoll`);
-        const game2Roll = document.querySelector(`#game2 .currentRoll`);
+        const game1Roll = document.querySelector('#game1 .currentRoll');
+        const game2Roll = document.querySelector('#game2 .currentRoll');
 
         if (gameData.index == 0) {
-             game1Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            game1Roll.classList.remove('hidden');
+            game1Roll.classList.add('showing');
+
+            game1Roll.innerHTML = `<p> + ${gameData.rollSum}</p>`;
             game1Roll.style.left = `${randomNum(5, 8)}%`;
             game1Roll.style.top = `${randomNum(25, 45)}%`;
 
             game2Roll.innerHTML = '';
         } else {
-             game2Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            game2Roll.classList.remove('hidden');
+            game2Roll.classList.add('showing');
+
+            game2Roll.innerHTML = `<p> + ${gameData.rollSum}</p>`;
             game2Roll.style.left = `${randomNum(85, 90)}%`;
             game2Roll.style.top = `${randomNum(25, 45)}%`;
 
