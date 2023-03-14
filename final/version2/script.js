@@ -34,11 +34,27 @@
 
         gameControl.className = 'showing';
         gameControl.innerHTML = '<button id="quit"> Wanna Quit?</button>';
+        gameControl.innerHTML += '<button id="instructions"> How to Play</button>';
         intro.classList.add('hidden');
         intro.classList.remove('showing');
 
         document.querySelector('#quit').addEventListener('click', function(){
             location.reload();
+        });
+
+        document.querySelector('#instructions').addEventListener('click', function(){
+            intro.classList.add('showing');
+            intro.classList.remove('hidden');
+
+            if (gameData.index == 0) {
+                document.getElementById('gameDivider1}').classList.remove('showing');
+                document.getElementById('gameDivider1}').classList.add('hiddenSmooth');
+            } else {
+                 document.getElementById('gameDivider2}').classList.remove('showing');
+                document.getElementById('gameDivider2}').classList.add('hiddenSmooth');
+            }
+            
+           
         });
 
         setUpTurn();    

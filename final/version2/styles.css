@@ -72,15 +72,21 @@ div {
 /* ------ game control section ------ */
 
 #gamecontrol {
+    display: flex;
+    justify-content: space-between;
+    width: 97vw;
+
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 4;
 }
 
 #gamecontrol button {
-    background-color: transparent;
-    border: none;
+    background-color: #e6e6e6;
+    color: #3f3f3f;
+    border: 1px solid #333;
+    border-radius: 5px;
 
     opacity: 0.6;
 }
