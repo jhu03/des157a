@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Project: Version 2</title>
+
+    <!-- normalize css -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <!-- link css -->
 	<link href="styles.css" rel="stylesheet">
+
+    <!-- link fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&family=VT323" rel="stylesheet">
+
+    <!-- link js -->
     <script src="script.js" defer></script>
 
+
+    <title>Final Project: Version 2</title>
 </head>
 <body>
 
@@ -16,9 +28,11 @@
     <section id="intro" class="showing overlayBg">
 
         <div class="overlay">
-            <h1>Game of PIG</h1>
-            <p>There are two players. The player whose turn it is rolls the dice. The total of the roll is added to the current player's score, unless either die comes up as a "one". If this happens, this player's turn is over, and it is the other player’s turn. After each roll, the current player can either roll again, (assuming a "one" was not rolled) or if the current player feels that luck is running thin, they can pass to the other player. The first player to get 30 points or higher wins.</p> 
-            <p>Oh, and if you roll two "ones" (snake eyes), your current score gets zeroed out. So don’t do that.</p>
+            <h1>Speedy Architects</h1>
+            <p><strong>Players</strong>: 2</p>
+            <p><strong>Goal</strong>: Be the first to built a tower of 20 blocks</p>
+
+            <p><strong>Instructions:</strong><br> Each player rolls a number to build their tower. If a 0 is rolled, the turn is passed to the next player. Players are able to roll again or pass their their whenever they wish.</p> 
 
             <p><strong>Randomly select Player 1 and click Start!</strong></p>
             <button id="startgame">Start the Game</button>
@@ -31,13 +45,17 @@
    
 
     <div id="game">
-        <div id="gameDivider1" class="hidden overlayBg"></div>
-        <div id="gameDivider2" class="hidden overlayBg"></div>
+        <div id="gameDivider1" class="hiddenSmooth overlayBg"></div>
+        <div id="gameDivider2" class="hiddenSmooth overlayBg"></div>
         
         <section id="game1">
             <div id="score1">
                 <h3>Score</h3>
                 <p>0</p> 
+            </div>
+
+            <div class="currentRoll">
+                <p></p>
             </div>
 
             <div id="blocks1"></div>
@@ -47,6 +65,10 @@
             <div id="score2">
                 <h3>Score</h3>
                 <p>0</p> 
+            </div>
+
+            <div class="currentRoll">
+                <p></p>
             </div>
 
             <div id="blocks2"></div>

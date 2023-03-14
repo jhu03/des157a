@@ -11,6 +11,7 @@
     const score = document.querySelector('#score');
     const blockImg = ['images/base.png', 'images/orange.png','images/yellow.png', 'images/purple.png', 'images/pink.png']
     const actionArea = document.getElementById('actions');
+    
 
     const gameData = {
         dice: ['images/1die.jpg', 'images/2die.jpg', 'images/3die.jpg', 'images/4die.jpg', 'images/5die.jpg', 'images/6die.jpg'],
@@ -45,7 +46,7 @@
 
 
     function setUpTurn() {
-        actionArea.innerHTML = '<button id="roll"> Roll the Dice </button>';
+        actionArea.innerHTML = '<button id="roll"> Build tower </button>';
         document.getElementById('roll').addEventListener('click', function(){
             throwDice();
         })
@@ -88,9 +89,13 @@
         // if either die is a 0...
         if (gameData.roll1 === 0){
             // switch player by looking that true/false of statement
+
+            showRoll();
             gameData.index ? (gameData.index = 0) : (gameData.index = 1);
 
             actionArea.innerHTML += `<p>Sorry, one of your rolls was a zero, switching to ${gameData.players[gameData.index]}</p>`;
+
+            
 
             setTimeout(setUpTurn, 2000);
         }
@@ -99,10 +104,14 @@
         else {
 
             gameData.score[gameData.index] += gameData.rollSum;
+            showRoll();
+
             create(); // generates blocks based on rolls
             backgroundMove(); // moves the background based on number of blocks rolled
+            removeAppear();
+            
 
-            actionArea.innerHTML = '<button id="rollagain">Roll Again</button> or <button id="pass">Pass</button>';
+            actionArea.innerHTML = '<button id="rollagain">Build again</button> or <button id="pass">Go on break</button>';
 
             document.getElementById('rollagain').addEventListener('click', function(){
                 throwDice();
@@ -130,15 +139,13 @@
             if (i !== 0) {
                 setTimeout(() => {
 				blockGen();
-			}, 1000);
-
-
+			    }, 1000);  
             } else {
                 blockGen();
+
             }
             // pauses after each block creation
 		}
-
 	}
 
 
@@ -146,7 +153,6 @@
     function blockGen (){
 
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
-        // let blockPlaced = document.querySelector(`block${gameData.numBlocks[gameData.index]}`);
 
         const blockPlace = new Audio('sounds/blockPlace.mp3');
                
@@ -156,12 +162,14 @@
             blocks.innerHTML += `
                 <div 
                     id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
-                    style="bottom: ${gameData.numBlocks[gameData.index] * 88}px;">
+                    style="bottom: ${gameData.numBlocks[gameData.index] * 95}px;">
 
                     <img src=${blockImg[0]}>
                 </div>`;
 
         } else {
+
+            // random location of block placement + styling bottom placement
             blocks.innerHTML += `
                 <div 
                     id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
@@ -170,16 +178,10 @@
                     
                     <img src="${blockImg[randomNum(1,blockImg.length-1)]}" width="168" height="88" alt="tower block">
                 </div>`;
-
-
-            // random location of block placement
-            // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.left = `${randomNum(25, 45)}%`;
         }
 
-        // POSSIBLE ERROR: the style doesn't get applied to every block generated and I'm not sure why. It only happens for Player 2 and often when Player 1 passes their turn to Player 2. 
         console.log("placed " + gameData.numBlocks[gameData.index] + " blocks for player " + gameData.index);
 
-        // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).style.bottom = `${gameData.numBlocks[gameData.index] * 88}px`;
 
         console.log( document.getElementById(`block${gameData.numBlocks[gameData.index]}`));
 
@@ -191,17 +193,15 @@
         gameData.numBlocks[gameData.index] += 1;
 
         console.log(`Player ${gameData.index + 1} numBlock ${gameData.numBlocks[gameData.index]}`)
-
-        // document.getElementById(`block${gameData.numBlocks[gameData.index]}`).classList.remove('appear');
-
-        // const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
-
-		// console.log(reduceHeight, `blocks${gameData.index + 1}`);
-
-		// document.getElementById(
-		// 	`blocks${gameData.index + 1}`
-		// ).style.bottom = `${reduceHeight}px`;
         
+    }
+
+    function removeAppear() {
+        const blocksAppeared = document.querySelectorAll('.blocks');
+
+        blocksAppeared.forEach(function(block){
+            block.classList.remove('appear');
+        })
     }
 
     function checkWinningCondition() {
@@ -220,9 +220,10 @@
             });
 
             actionArea.innerHTML = '';
-            dividerOverlay.classList.add('hidden');
-            dividerOverlay.classList.remove('showing');
-            document.querySelector('#quit').classList.add('hidden');
+
+            const dividerOverlay = document.querySelector(`#gameDivider${gameData.index}`)
+            dividerOverlay.classList.remove('overlayBg');
+            document.querySelector('#quit').classList.add('hiddenSmooth');
 
         } else {
             //show current score
@@ -239,6 +240,25 @@
 
         score1.innerHTML = `<strong> ${gameData.score[0]}</strong>`;
         score2.innerHTML = `<strong> ${gameData.score[1]}</strong>`;
+    }
+
+    function showRoll(){
+        const game1Roll = document.querySelector(`#game1 .currentRoll`);
+        const game2Roll = document.querySelector(`#game2 .currentRoll`);
+
+        if (gameData.index == 0) {
+             game1Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            game1Roll.style.left = `${randomNum(5, 8)}%`;
+            game1Roll.style.top = `${randomNum(25, 45)}%`;
+
+            game2Roll.innerHTML = '';
+        } else {
+             game2Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            game2Roll.style.left = `${randomNum(85, 90)}%`;
+            game2Roll.style.top = `${randomNum(25, 45)}%`;
+
+            game1Roll.innerHTML = '';
+        }
     }
 
 
@@ -258,16 +278,19 @@
         const dividerOverlay2 = document.querySelector('#gameDivider2');
 
         if (gameData.index == 0) {
+
             dividerOverlay2.classList.add('showing');
-            dividerOverlay2.classList.remove('hidden');
+            dividerOverlay2.classList.remove('hiddenSmooth');
 
-            dividerOverlay1.classList.add('hidden');
+            dividerOverlay1.classList.add('hiddenSmooth');
             dividerOverlay1.classList.remove('showing');
-        } else {
-            dividerOverlay1.classList.add('showing');
-            dividerOverlay1.classList.remove('hidden');
 
-            dividerOverlay2.classList.add('hidden');
+        } else {
+
+            dividerOverlay1.classList.add('showing');
+            dividerOverlay1.classList.remove('hiddenSmooth');
+
+            dividerOverlay2.classList.add('hiddenSmooth');
             dividerOverlay2.classList.remove('showing');
         }
     }
@@ -278,26 +301,16 @@
     const num = gameData.numBlocks[gameData.index];
 
     function backgroundMove() {
+        
         const backgroundImage = document.querySelector(`#game${gameData.index+1}`);
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
-        const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
+        const reduceHeight = -44 * `${gameData.numBlocks[gameData.index]}`;
+        const recent = gameData.numBlocks[gameData.index] - gameData.rollSum;
 
-        // moving the screen and blocks if there are 6 blocks
-        // switch (gameData.numBlocks[gameData.index]){
-        //     case 6: 
-        //         backgroundImage.style.backgroundPositionY = `1400px`;
-        //         blocks.style.bottom = `${reduceHeight}px`;
-        //         break;
-        //     case 7:
-        //         backgroundImage.style.backgroundPositionY = `1488px`;
-        //         blocks.style.bottom = `${reduceHeight}px`;
-        //         break;
+        console.log(recent)
 
-        // }
-
-
-        if (gameData.rollSum >= 6) {
-            // backgroundImage.style.backgroundPositionY = `${position * 89}px`;
+        if (gameData.rollSum >= 4 || recent >5) {
+            backgroundImage.style.backgroundPositionY = `${position * -10 }px`;
             blocks.style.bottom = `${reduceHeight}px`;
 
             position++;
