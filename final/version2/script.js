@@ -125,6 +125,7 @@
             showRoll();
 
             create(); // generates blocks based on rolls
+            
             backgroundMove(); // moves the background based on number of blocks rolled
             removeAppear();
             
@@ -154,14 +155,14 @@
     function create() {
          // create blocks; loops for every number in a roll
 		for (let i = 0; i < gameData.rollSum; i++) {
-            if (i !== 0) {
-                setTimeout(() => {
-				blockGen();
-			    }, 1000);  
-            } else {
+            // if (i !== 0) {
+            //     setTimeout(() => {
+			// 	blockGen();
+			//     }, 1000);  
+            // } else {
                 blockGen();
 
-            }
+            // }
             // pauses after each block creation
 		}
 	}
@@ -198,7 +199,7 @@
                 </div>`;
         }
 
-        console.log("placed " + gameData.numBlocks[gameData.index] + " blocks for player " + gameData.index);
+        // console.log("placed " + gameData.numBlocks[gameData.index] + " blocks for player " + gameData.index);
 
 
         console.log( document.getElementById(`block${gameData.numBlocks[gameData.index]}`));
@@ -218,7 +219,9 @@
         const blocksAppeared = document.querySelectorAll('.blocks');
 
         blocksAppeared.forEach(function(block){
-            block.classList.remove('appear');
+      
+            setTimeout(()=>{ block.classList.remove('appear');}, 1500)
+           
         })
     }
 
@@ -322,6 +325,7 @@
 
     // function for moving background and stuff
     let position = 1;
+    let  currentY = -1400
     const num = gameData.numBlocks[gameData.index];
 
     function backgroundMove() {
@@ -329,13 +333,20 @@
         const backgroundImage = document.querySelector(`#game${gameData.index+1}`);
         const blocks = document.querySelector(`#blocks${gameData.index + 1}`);
         const reduceHeight = -44 * `${gameData.numBlocks[gameData.index]}`;
-        const recent = gameData.numBlocks[gameData.index] - gameData.rollSum;
+        const recent = gameData.score[gameData.index];
 
-        console.log(recent)
+        console.log(recent , gameData.rollSum )
 
-        if (gameData.rollSum >= 4 || recent >5) {
-            backgroundImage.style.backgroundPositionY = `${position * -10 }px`;
+        if (recent > 5) {
+            // prevPosition *=
+            
+            currentY = (Math.max(5,(recent - gameData.rollSum))*88)+currentY
             blocks.style.bottom = `${reduceHeight}px`;
+
+
+          backgroundImage.style.backgroundPositionY = `${currentY}px`
+ console.log("CURRENT Y=", currentY)
+            console.log(`${(gameData.rollSum*88) }px` )
 
             position++;
         } 

@@ -42,3 +42,10 @@ strong {
 #compBg h2 {
     margin-top: 0;
 }
+
+#images {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+}
