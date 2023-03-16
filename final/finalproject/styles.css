@@ -1,0 +1,276 @@
+body {
+    font-family: 'VT323', monospace;;
+    color: #333;
+    line-height: 1.5em;
+
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+}
+
+p {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+}
+
+.showing {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.hiddenSmooth {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.overlayBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0,0,0,0.5);
+    margin: auto;
+
+    transition: all 0.25s ease-in-out;
+
+    z-index: 3;
+}
+
+button { 
+    font-family: 'Source Code Pro', monospace;
+    padding: 10px;
+}
+
+div {
+    padding: 20px;
+}
+
+/* ------ intro section ------ */
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: aliceblue;
+    border-radius: 15px;
+    padding: 60px;
+
+    z-index: 1;
+}
+
+/* ------ game control section ------ */
+
+#gamecontrol {
+    display: flex;
+    justify-content: space-between;
+    width: 97vw;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}
+
+#gamecontrol button {
+    background-color: #e6e6e6;
+    color: #3f3f3f;
+    border: 1px solid #333;
+    border-radius: 5px;
+
+    opacity: 0.6;
+}
+
+#score {
+    text-align: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+/* ------ score section ------ */
+
+#score0, #score1 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#score0 h3, #score1 h3 {
+    margin-bottom: 0;
+}
+
+#score0 p, #score1 p {
+    margin-top: 10px;
+}
+
+/* ------ gameplay section ------ */
+
+#game {
+    display: flex;
+
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game0, #game1 {
+    /* background-image: url(images/compBg.png);
+    background-attachment: fixed;
+    background-position: left bottom; 
+    background-size: 600px; */
+    height: 100vh;
+    width: 50vw;
+
+    /* transition: all 2s ease-in-out; */
+}
+
+.bg {
+    height: auto;
+    width: 50vw;
+    
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+
+    transition: all 2s ease-in-out;
+}
+
+#gameDivider0, #gameDivider1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 50vw;
+    padding: 0;
+
+    transition: all 1s ease-in-out;
+}
+
+#gameDivider1 {
+    left: 50%;
+}
+
+.currentRoll {
+    font-size: 2em;
+    position: absolute;
+
+    z-index: 5;
+}
+
+
+/* ------ gameplay blocks section ------ */
+#blocks0, #blocks1 {
+    height: 80vh;
+
+    position: relative;
+    bottom: 20.5%;
+
+    transition: all 1s ease-in-out;
+}
+
+#blocks0 p, #blocks1 p {
+    background-color: #A4B8E3;
+    margin-top: -35px;
+    padding: 0 10px;
+    width: fit-content;
+}
+
+#blocks1 p {
+    background-color: #E0B0CE;
+}
+
+.blocks {
+    padding: 0;
+    height: 88px;
+
+    position: absolute;
+    left: 38%;
+}
+
+.appear {
+    animation-name: pop;
+    animation-duration: 1s;
+    /* animation-delay: 1s; */
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pop {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+.disappear {
+    animation-name: poof;
+    animation-duration: 1s;
+    /* animation-delay: 1s; */
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes poof {
+    0% {transform: scale(1);}
+    100% {transform: scale(0);}
+}
+
+/* ------ player actions section ------ */
+
+#playerActions {
+    display: grid;
+    grid-template-columns: 0.75fr 2.5fr 0.75fr 2.5fr;
+    grid-template-rows: auto;
+    align-content: center;
+    align-items: center;
+
+    background-color: rgba(0,0,0,0.5);
+    color: #e6e6e6;
+    
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 7vh;
+    padding: 20px 0; 
+}
+
+h4 {
+    font-size: 1.6em;
+    padding-left: 30px;
+}
+
+#p1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#p2 {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#actions button {
+    background-color: rgba(148,187,233,1);
+    border: none;
+    border-radius: 4px;
+    margin: 0 15px;
+    padding: 15px 30px;
+
+    font-size: 1em;
+    font-weight: 600;
+}
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- normalize css -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <!-- link css -->
+	<link href="styles.css" rel="stylesheet">
+
+    <!-- link fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&family=VT323" rel="stylesheet">
+
+    <!-- link js -->
+    <script src="script.js" defer></script>
+
+
+    <title>Final Project: Version 2</title>
+</head>
+<body>
+
+    <!-- <figure src="images/compBG.png"></figure> -->
+
+    <section id="intro" class="showing overlayBg">
+
+        <div class="overlay">
+            <h1>Speedy Architects</h1>
+            <p><strong>Players</strong>: 2</p>
+            <p><strong>Goal</strong>: Be the first to built a tower of 20 blocks</p>
+
+            <p><strong>Instructions:</strong><br> Each player rolls a number to build their tower. If a 0 is rolled, the turn is passed to the next player. Players are able to roll again or pass their their whenever they wish.</p> 
+
+            <p><strong>Randomly select Player 1 and click Start!</strong></p>
+            <button id="startgame">Start building</button>
+        </div>
+    </section>
+    
+    <div id="gamecontrol" class="hidden">
+        <button></button>
+        <button></button>
+    </div>
+   
+
+    <div id="game">
+        <div id="gameDivider0" class="hiddenSmooth overlayBg"></div>
+        <div id="gameDivider1" class="hiddenSmooth overlayBg"></div>
+        
+        <section id="game0">
+
+            <img src="images/compBG.png" width="600" height="750" class="bg">
+
+            <div id="score0">
+                <h3>Score</h3>
+                <p>0</p> 
+            </div>
+
+            <div class="currentRoll hidden">
+                <p></p>
+            </div>
+
+            <div id="blocks0"></div>
+        </section>
+
+        <section id="game1">
+
+            <img src="images/compBG.png" width="600" height="750" class="bg">
+
+            <div id="score1">
+                <h3>Score</h3>
+                <p>0</p> 
+            </div>
+
+            <div class="currentRoll hidden">
+                <p></p>
+            </div>
+
+            <div id="blocks1"></div>
+        </section>
+
+        <div id="playerActions">
+            <h4 id="p1">Player 1</h4>
+
+            <div id="actions"></div>
+
+            <h4 id="p2">Player 2</h4>
+        </div>
+    </div>
+    
+
+`
+    <div id="score" class="hidden overlayBg">
+        <div id="scoreCard" class="overlay"></div>
+    </div>
+</body>
+</html>
