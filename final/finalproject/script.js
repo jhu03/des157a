@@ -193,15 +193,6 @@
                 </div>`;
         }
 
-        // console.log("placed " + gameData.numBlocks[gameData.index] + " blocks for player " + gameData.index);
-
-
-        console.log( document.getElementById(`block${gameData.numBlocks[gameData.index]}`));
-
-
-        // checking if the line above runs
-        console.log('styled');
-
         blockPlace.play();
         gameData.numBlocks[gameData.index] += 1;
 
@@ -209,6 +200,7 @@
         
     }
 
+    
     function removeAppear() {
         const blocksAppeared = document.querySelectorAll('.blocks');
 
@@ -218,6 +210,7 @@
            
         })
     }
+
 
     function checkWinningCondition() {
         if(gameData.score[gameData.index] > gameData.gameEnd) {
@@ -318,17 +311,20 @@
 
 
     // function for moving background and stuff
-    let position = 1;
+    let position0 = 1;
+    let position1 = 1
+    
+
     let  currentY = 0
     const num = gameData.numBlocks[gameData.index];
 
     function backgroundMove() {
         
-        // const backgroundImage = document.querySelector(`#game${gameData.index+1}`);
         const backgroundImage = document.querySelector(`#game${gameData.index} .bg`);
-        const blocks = document.querySelector(`#blocks${gameData.index}`);
+        
         const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
         const recent = gameData.score[gameData.index];
+        const blocks = document.querySelector(`#blocks${gameData.index}`);
 
         // let height = window.innerHeight;
 
@@ -338,19 +334,38 @@
 
         console.log(recent , gameData.rollSum )
 
-        if (recent >= 5 && position <= 12) {
+        if (gameData.index == 0) {
+            if (recent >= 5 && position0 <= 12) {
+                
+                currentY = ((recent - 5) * -88);
+                blocks.style.bottom = `${currentY}px`
+                
+    
+                backgroundImage.style.bottom = `${position0 * -15}%`
+    
+                position0++;
+            }
+        } else if (gameData.index == 1) {
+            if (recent >= 5 && position1 <= 12) {
+                currentY = ((recent - 5) * -88);
+            blocks.style.bottom = `${currentY}px`
+
+                backgroundImage.style.bottom = `${position1 * -15}%`
+
+                position1++;
+            }
             
-            currentY = (Math.max(5,(recent - gameData.rollSum))*-88)
-            blocks.style.bottom = `${currentY}px`;
 
-            backgroundImage.style.bottom = `${position * -15}%`
+        }
+    }
+    
+    
         
-            console.log(`position ${position}`)
-            console.log("CURRENT Y=", currentY)
-            console.log(`${(gameData.rollSum*88) }px` )
 
-            position++;
-        } 
+
+    function towerMove() {
+        currentY = ((recent - 5) * -88);
+        blocks.style.bottom = `${currentY}px`;
     }
 
 
