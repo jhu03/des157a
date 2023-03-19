@@ -4,12 +4,13 @@
     console.log('reading js');
 
     const intro = document.querySelector('#intro');
+    const exit = document.querySelector('#confirmation')
+
     const startGame = document.getElementById('startgame');
     const gameControl = document.getElementById('gamecontrol');
     const score = document.querySelector('#score');
     const blockImg = ['images/base.png', 'images/orange.png','images/yellow.png', 'images/purple.png', 'images/pink.png']
     const actionArea = document.getElementById('actions');
-    
 
     const gameData = {
         players: ['Player 1', 'Player 2'],
@@ -22,7 +23,7 @@
         gameEnd: 40
     };
 
-
+    
     startGame.addEventListener('click', function(){
         // randomly set game index here...
         // gameData.index = Math.round(Math.random());
@@ -32,31 +33,64 @@
         gameControl.className = 'showing';
         gameControl.innerHTML = '<button id="quit"> Quit?</button>';
         gameControl.innerHTML += '<button id="instructions"> How to Play</button>';
+
+        startGame.remove();
+
         intro.classList.add('hidden');
         intro.classList.remove('showing');
 
+
+
         document.querySelector('#quit').addEventListener('click', function(){
+           dividers()
+            exit.classList.add('showing');
+            exit.classList.remove('hidden');
+            
+        });
+
+        document.querySelector('#quitConfirm').addEventListener('click', function(){
             location.reload();
         });
+
+
+        document.querySelector('#resume').addEventListener('click', function(){
+            exit.classList.add('hidden');
+            exit.classList.remove('showing');
+
+            setUpTurn();
+        });
+
 
         document.querySelector('#instructions').addEventListener('click', function(){
             intro.classList.add('showing');
             intro.classList.remove('hidden');
+            dividers()
 
-            startGame.innerHTML = 'Resume building';
+            document.querySelector('#intro .overlay').innerHTML += '<button id="resume1">Resume building</button>';
 
-            if (gameData.index == 0) {
-                document.getElementById('gameDivider1').classList.remove('showing');
-                document.getElementById('gameDivider1').classList.add('hiddenSmooth');
-            } else {
-                 document.getElementById('gameDivider0').classList.remove('showing')
-                document.getElementById('gameDivider0').classList.add('hiddenSmooth')
-            }
+
+            document.querySelector('#resume1').addEventListener('click', function(){
+                intro.classList.add('hidden');
+                intro.classList.remove('showing');
+
+                setUpTurn();
+            });
 
         });
 
         setUpTurn();    
     })
+
+    function dividers() {
+ 
+        if (gameData.index == 0) {
+            document.getElementById('gameDivider1').classList.remove('showing');
+            document.getElementById('gameDivider1').classList.add('hiddenSmooth');
+        } else {
+             document.getElementById('gameDivider0').classList.remove('showing')
+            document.getElementById('gameDivider0').classList.add('hiddenSmooth')
+        }
+    }
 
 
     function setUpTurn() {
@@ -121,7 +155,7 @@
             create(); // generates blocks based on rolls
             
             backgroundMove(); // moves the background based on number of blocks rolled
-            removeAppear();
+            // removeAppear();
             
 
             actionArea.innerHTML = '<button id="rollagain">Build again</button> or <button id="pass">Go on break</button>';
@@ -144,27 +178,37 @@
         }
     }
 
-
     //creates the blocks
     function create() {
          // create blocks; loops for every number in a roll
 		for (let i = 0; i < gameData.rollSum; i++) {
+
+            timeout(i)
+
+
             // if (i !== 0) {
+            //     (function() {
             //     setTimeout(() => {
-			// 	blockGen();
+			// 	blockGen;
 			//     }, 1000);  
+            //     }());
+                
             // } else {
-                blockGen();
+            //     blockGen();
 
             // }
             // pauses after each block creation
 		}
+        //    clearTimeout(test2)
 	}
 
+    function timeout(i) {
+        setTimeout(blockGen, 750 * i);
+        // removeAppear();
+    }
 
     //blocks generator
     function blockGen (){
-
         const blocks = document.querySelector(`#blocks${gameData.index}`);
 
         const blockPlace = new Audio('sounds/blockPlace.mp3');
@@ -197,6 +241,8 @@
         gameData.numBlocks[gameData.index] += 1;
 
         console.log(`Player ${gameData.index} numBlock ${gameData.numBlocks[gameData.index]}`)
+
+        removeAppear()
         
     }
 
@@ -205,8 +251,9 @@
         const blocksAppeared = document.querySelectorAll('.blocks');
 
         blocksAppeared.forEach(function(block){
+            // block.classList.remove('appear')
       
-            setTimeout(()=>{ block.classList.remove('appear');}, 1500)
+            setTimeout(()=>{ block.classList.remove('appear');}, 500)
            
         })
     }
@@ -258,7 +305,7 @@
             game0Roll.classList.remove('hidden');
             game0Roll.classList.add('showing');
 
-            game0Roll.innerHTML = `<p> + ${gameData.rollSum}</p>`;
+            game0Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
             game0Roll.style.left = `${randomNum(5, 8)}%`;
             game0Roll.style.top = `${randomNum(25, 45)}%`;
 
@@ -313,61 +360,38 @@
     // function for moving background and stuff
     let position0 = 1;
     let position1 = 1
-    
-
-    let  currentY = 0
-    const num = gameData.numBlocks[gameData.index];
 
     function backgroundMove() {
         
         const backgroundImage = document.querySelector(`#game${gameData.index} .bg`);
         
-        const reduceHeight = -88 * `${gameData.numBlocks[gameData.index]}`;
         const recent = gameData.score[gameData.index];
         const blocks = document.querySelector(`#blocks${gameData.index}`);
+        let currentY = ((recent - 6) * -88);
 
         // let height = window.innerHeight;
 
         // let recentBlock = document.querySelector(`#block${gameData.numBlocks[gameData.index]}`);
-        // let towerHeight = recentBlock.getBoundingClientRect();
-        // console.log(`tower height ${towerHeight.top}`)
+        let towerHeight = backgroundImage.getBoundingClientRect();
+        console.log(`tower height ${towerHeight.top}`)
 
         console.log(recent , gameData.rollSum )
 
         if (gameData.index == 0) {
             if (recent >= 5 && position0 <= 12) {
-                
-                currentY = ((recent - 5) * -88);
                 blocks.style.bottom = `${currentY}px`
-                
-    
                 backgroundImage.style.bottom = `${position0 * -15}%`
-    
                 position0++;
             }
         } else if (gameData.index == 1) {
             if (recent >= 5 && position1 <= 12) {
-                currentY = ((recent - 5) * -88);
-            blocks.style.bottom = `${currentY}px`
-
+                blocks.style.bottom = `${currentY}px`
                 backgroundImage.style.bottom = `${position1 * -15}%`
-
                 position1++;
             }
-            
-
         }
     }
     
-    
-        
-
-
-    function towerMove() {
-        currentY = ((recent - 5) * -88);
-        blocks.style.bottom = `${currentY}px`;
-    }
-
 
     // random number generator for tower image and block position
     function randomNum(min, max) {

@@ -1,7 +1,9 @@
+/* ------ general styles and typography ------ */
+
 body {
-    font-family: 'VT323', monospace;;
-    color: #333;
-    line-height: 1.5em;
+    font-family: 'VT323', monospace;
+    color: #3f3f3f;
+    line-height: 1.6em;
 
     width: 100vw;
     height: 100vh;
@@ -13,6 +15,18 @@ body {
 p {
     font-family: 'Source Code Pro', monospace;
     font-weight: 500;
+}
+
+#game h3 {
+    /* font-family: 'Source Code Pro', monospace; */
+    font-size: 1em;
+}
+
+#score0 p, #score1 p {
+    font-family: 'VT323', monospace;
+    font-size: 2.3em;
+    color: #0d0d0d;
+    padding: 10px 0 0;
 }
 
 .showing {
@@ -156,7 +170,7 @@ div {
     width: 50vw;
     padding: 0;
 
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 #gameDivider1 {
@@ -176,7 +190,7 @@ div {
     height: 80vh;
 
     position: relative;
-    bottom: 20.5%;
+    bottom: 25%;
 
     transition: all 1s ease-in-out;
 }
@@ -202,16 +216,19 @@ div {
 
 .appear {
     animation-name: pop;
-    animation-duration: 1s;
+    animation-duration: 0.3s;
     /* animation-delay: 1s; */
     animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: cubic-bezier(.17,.67,.04,1.31);
     animation-fill-mode: forwards;
 }
 
 @keyframes pop {
-    0% {transform: scale(0);}
-    100% {transform: scale(1);}
+    /* 0% {transform: scale(0);}
+    100% {transform: scale(1);} */
+    0% {transform: translateY(-100px);}
+    100% {transform: translateY(0px);}
+    /* 50% {transform: translateY(50px);} */
 }
 
 .disappear {

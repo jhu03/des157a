@@ -19,7 +19,7 @@
     <script src="script.js" defer></script>
 
 
-    <title>Final Project: Version 2</title>
+    <title>Final Project</title>
 </head>
 <body>
 
@@ -28,7 +28,7 @@
     <section id="intro" class="showing overlayBg">
 
         <div class="overlay">
-            <h1>Speedy Architects</h1>
+            <h1>Risky Towers</h1>
             <p><strong>Players</strong>: 2</p>
             <p><strong>Goal</strong>: Be the first to built a tower of 20 blocks</p>
 
@@ -38,6 +38,16 @@
             <button id="startgame">Start building</button>
         </div>
     </section>
+
+    <div id="confirmation" class="overlayBg hidden">
+        <div class="overlay">
+            <h2>Abandon construction?</h2>
+            <p>Are you sure you want to leave this project unfinished? All progress will be lost</p>
+
+            <button id="resume">Resume Building</button>
+            <button id="quitConfirm">Scrap Project</button>
+        </div>
+    </div>
     
     <div id="gamecontrol" class="hidden">
         <button></button>
