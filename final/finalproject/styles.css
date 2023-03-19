@@ -68,6 +68,100 @@ div {
     padding: 20px;
 }
 
+/* ------ preloader section ------ */
+
+#preloader {
+    display: flex;
+	flex-direction: row;
+    align-items: center;
+    z-index: 6;
+    /* background: #e4e4e4; */
+    background: rgb(232,227,255);
+    background: linear-gradient(180deg, rgba(232,227,255,1) 0%, rgba(230,247,255,1) 100%);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    transition: all 1s ease-in-out;
+}
+
+#loadImg {
+    height: auto;
+    width: 100vw;
+    
+    position: absolute;
+    bottom: -50%;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+#preloader div {
+    padding: 0 60px;
+}
+
+#preloader h2 {
+    color: #454545;
+    font-family: 'VT323', monospace;
+    font-size: 3.8em;
+    margin-bottom: 50px;
+}
+
+#preloader p {
+    font-size: 1.6em;
+}
+
+#preloadBlocks {
+    display: flex;
+    flex-direction: column-reverse;
+    align-self: end;
+
+    position: relative;
+    width: 18vw;
+    height: 100vh;
+}
+
+#preloadBlocks img {
+    position: absolute;
+}
+
+#loadbase {
+    left: 33%;
+    bottom: 0px;
+}
+
+#load1 {
+    left: 45%;
+    bottom: 120px;
+}
+
+#load2 {
+    left: 53%;
+    bottom: 240px;
+}
+
+#load3 {
+    left: 38%;
+    bottom: 360px;
+}
+
+#load4 {
+    left: 42%;
+    bottom: 480px;
+}
+
+#load5 {
+    left: 43%;
+    bottom: 600px;
+}
+
+#load6 {
+    left: 40%;
+    bottom: 720px;
+}
+
+
 /* ------ intro section ------ */
 
 .overlay {
@@ -184,6 +278,19 @@ div {
     z-index: 5;
 }
 
+.currentRoll p {
+    animation-name: score;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes score {
+    0% {transform: scale(0.5);}
+    100% {transform: scale(1.3);}
+}
+
 
 /* ------ gameplay blocks section ------ */
 #blocks0, #blocks1 {
@@ -216,19 +323,15 @@ div {
 
 .appear {
     animation-name: pop;
-    animation-duration: 0.3s;
-    /* animation-delay: 1s; */
+    animation-duration: 0.2s;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(.17,.67,.04,1.31);
     animation-fill-mode: forwards;
 }
 
 @keyframes pop {
-    /* 0% {transform: scale(0);}
-    100% {transform: scale(1);} */
     0% {transform: translateY(-100px);}
     100% {transform: translateY(0px);}
-    /* 50% {transform: translateY(50px);} */
 }
 
 .disappear {

@@ -22,8 +22,29 @@
         index: 0,
         gameEnd: 40
     };
+        
+    const preloader = document.querySelector('#preloader');
+    const preloaderImgs = document.querySelectorAll('#preloadBlocks img');
+    const lastLoad = document.querySelector('#load6');
 
-    
+        preloaderImgs.forEach((img, i) => {
+            setTimeout(() => {
+                img.classList.add('showing');
+                img.classList.remove('hidden');
+
+                img.classList.add('appear');
+            }, i * 1000);
+          });
+          
+
+		// wait until the animation has completed
+		lastLoad.addEventListener('animationend', function () {
+
+			//once the animation is done, remove the preloader div.
+			preloader.className = 'hiddenSmooth';
+		});
+
+
     startGame.addEventListener('click', function(){
         // randomly set game index here...
         // gameData.index = Math.round(Math.random());
@@ -184,22 +205,7 @@
 		for (let i = 0; i < gameData.rollSum; i++) {
 
             timeout(i)
-
-
-            // if (i !== 0) {
-            //     (function() {
-            //     setTimeout(() => {
-			// 	blockGen;
-			//     }, 1000);  
-            //     }());
-                
-            // } else {
-            //     blockGen();
-
-            // }
-            // pauses after each block creation
 		}
-        //    clearTimeout(test2)
 	}
 
     function timeout(i) {
@@ -221,7 +227,7 @@
                     id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
                     style="bottom: ${gameData.numBlocks[gameData.index] * 95}px;">
 
-                    <img src=${blockImg[0]}>
+                    <img src=${blockImg[0]} width="168" height="88" alt="tower block">
                 </div>`;
 
         } else {
@@ -251,10 +257,7 @@
         const blocksAppeared = document.querySelectorAll('.blocks');
 
         blocksAppeared.forEach(function(block){
-            // block.classList.remove('appear')
-      
             setTimeout(()=>{ block.classList.remove('appear');}, 500)
-           
         })
     }
 
@@ -304,8 +307,19 @@
         if (gameData.index == 0) {
             game0Roll.classList.remove('hidden');
             game0Roll.classList.add('showing');
+            
+            game0Roll.innerHTML = `<p> +${gameData.rollSum}</p>`
 
-            game0Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+
+            // for (let i = 0; i < gameData.rollSum; i++) {
+                
+
+            //     // if (i === gameData.rollSum) {
+            //     //     game0Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            //     //     game0Roll.style.fontSize = '2em';
+            //     // }
+            // }
+            
             game0Roll.style.left = `${randomNum(5, 8)}%`;
             game0Roll.style.top = `${randomNum(25, 45)}%`;
 
@@ -314,8 +328,8 @@
             game1Roll.classList.remove('hidden');
             game1Roll.classList.add('showing');
 
-            game1Roll.innerHTML = `<p> + ${gameData.rollSum}</p>`;
-            game1Roll.style.left = `${randomNum(85, 90)}%`;
+            game1Roll.innerHTML = `<p> +${gameData.rollSum}</p>`;
+            game1Roll.style.left = `${randomNum(85, 89)}%`;
             game1Roll.style.top = `${randomNum(25, 45)}%`;
 
             game0Roll.innerHTML = '';
@@ -400,5 +414,6 @@
 
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
+
 
 }());
