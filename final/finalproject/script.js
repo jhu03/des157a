@@ -23,57 +23,65 @@
         gameEnd: 40
     };
         
+    // loads in background sounds when page is opened
+    const cityNoise = new Audio('sounds/city.mp3');
+    window.addEventListener('load', function(){
+        cityNoise.play();
+        cityNoise.loop = true;
+    })
+
+    // loading page sequence
     const preloader = document.querySelector('#preloader');
     const preloaderImgs = document.querySelectorAll('#preloadBlocks img');
     const lastLoad = document.querySelector('#load6');
 
-        preloaderImgs.forEach((img, i) => {
-            setTimeout(() => {
-                img.classList.add('showing');
-                img.classList.remove('hidden');
+    preloaderImgs.forEach((img, i) => {
+        setTimeout(() => {
+            img.classList.add('showing');
+            img.classList.remove('hidden');
 
-                img.classList.add('appear');
-            }, i * 1000);
-          });
-          
+            img.classList.add('appear');
+        }, i * 1000);
+        });
+        
+    // wait until the animation has completed
+    lastLoad.addEventListener('animationend', function () {
 
-		// wait until the animation has completed
-		lastLoad.addEventListener('animationend', function () {
-
-			//once the animation is done, remove the preloader div.
-			preloader.className = 'hiddenSmooth';
-		});
+        //once the animation is done, remove the preloader div.
+        preloader.className = 'hiddenSmooth';
+    });
 
 
+    // start game sequence when "Start" is clicked
     startGame.addEventListener('click', function(){
         // randomly set game index here...
-        // gameData.index = Math.round(Math.random());
-        gameData.index = 0;
+        gameData.index = Math.round(Math.random());
         console.log('index:' + gameData.index);
 
+        // game controls appear on screen
         gameControl.className = 'showing';
         gameControl.innerHTML = '<button id="quit"> Quit?</button>';
         gameControl.innerHTML += '<button id="instructions"> How to Play</button>';
 
-        startGame.remove();
+        startGame.remove(); // deletes original start button so a new button will show up when instructions is opened
 
+        // hides opening instructions screen
         intro.classList.add('hidden');
         intro.classList.remove('showing');
 
-
-
+        // opens quit confirmation page
         document.querySelector('#quit').addEventListener('click', function(){
            dividers()
             exit.classList.add('showing');
             exit.classList.remove('hidden');
-            
         });
 
+        // restarts game when "Quit" is clicked
         document.querySelector('#quitConfirm').addEventListener('click', function(){
             location.reload();
         });
 
-
+        // game resumes
         document.querySelector('#resume').addEventListener('click', function(){
             exit.classList.add('hidden');
             exit.classList.remove('showing');
@@ -81,13 +89,13 @@
             setUpTurn();
         });
 
-
+        // opens instructions, same overlay div as the opening screen
         document.querySelector('#instructions').addEventListener('click', function(){
             intro.classList.add('showing');
             intro.classList.remove('hidden');
             dividers()
 
-            document.querySelector('#intro .overlay').innerHTML += '<button id="resume1">Resume building</button>';
+            document.querySelector('#intro .overlay').innerHTML += '<button id="resume1">Resume building</button>'; // adding new resume button
 
 
             document.querySelector('#resume1').addEventListener('click', function(){
@@ -96,23 +104,12 @@
 
                 setUpTurn();
             });
-
         });
 
         setUpTurn();    
     })
 
-    function dividers() {
- 
-        if (gameData.index == 0) {
-            document.getElementById('gameDivider1').classList.remove('showing');
-            document.getElementById('gameDivider1').classList.add('hiddenSmooth');
-        } else {
-             document.getElementById('gameDivider0').classList.remove('showing')
-            document.getElementById('gameDivider0').classList.add('hiddenSmooth')
-        }
-    }
-
+    // ----- BASIC PIG GAME JS CODE -----
 
     function setUpTurn() {
         actionArea.innerHTML = '<button id="roll"> Build tower </button>';
@@ -155,16 +152,15 @@
 
         // if either die is a 0...
         if (gameData.roll1 === 0){
-            // switch player by looking that true/false of statement
 
-            showRoll();
-            gameData.index ? (gameData.index = 0) : (gameData.index = 1);
+            showRoll(); // shows what the player rolled
+            gameData.index ? (gameData.index = 0) : (gameData.index = 1); // switch player by looking that true/false of statement
 
-            actionArea.innerHTML += `<p>Sorry, one of your rolls was a zero, switching to ${gameData.players[gameData.index]}</p>`;
+            actionArea.innerHTML += `<p><strong>Out of materials!</strong> ${gameData.players[gameData.index]} can build while you find some more</p>`;
 
-            
+            document.querySelector(`#actions strong`).style.color = 'orange';
 
-            setTimeout(setUpTurn, 2000);
+            setTimeout(setUpTurn, 2500); // 2.5s pause before action area is set for next player
         }
 
         // if neither die is a 1...
@@ -176,16 +172,16 @@
             create(); // generates blocks based on rolls
             
             backgroundMove(); // moves the background based on number of blocks rolled
-            // removeAppear();
-            
 
             actionArea.innerHTML = '<button id="rollagain">Build again</button> or <button id="pass">Go on break</button>';
 
-            document.getElementById('rollagain').addEventListener('click', function(){
+            document.getElementById('rollagain').addEventListener('click', function(event){
+                event.preventDefault();
                 throwDice();
             })
 
-            document.getElementById('pass').addEventListener('click', function(){
+            document.getElementById('pass').addEventListener('click', function(event){
+                event.preventDefault();
                 const pass = new Audio ('sounds/scrape.mp3');
 
                 pass.play();
@@ -197,68 +193,6 @@
             // check winning condition
             checkWinningCondition();
         }
-    }
-
-    //creates the blocks
-    function create() {
-         // create blocks; loops for every number in a roll
-		for (let i = 0; i < gameData.rollSum; i++) {
-
-            timeout(i)
-		}
-	}
-
-    function timeout(i) {
-        setTimeout(blockGen, 750 * i);
-        // removeAppear();
-    }
-
-    //blocks generator
-    function blockGen (){
-        const blocks = document.querySelector(`#blocks${gameData.index}`);
-
-        const blockPlace = new Audio('sounds/blockPlace.mp3');
-               
-        // makes sure the first block placed is the same for both players
-        if (gameData.numBlocks[gameData.index] === 0) {
-
-            blocks.innerHTML += `
-                <div 
-                    id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
-                    style="bottom: ${gameData.numBlocks[gameData.index] * 95}px;">
-
-                    <img src=${blockImg[0]} width="168" height="88" alt="tower block">
-                </div>`;
-
-        } else {
-
-            // random location of block placement + styling bottom placement
-            blocks.innerHTML += `
-                <div 
-                    id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
-                    style="left: ${randomNum(25, 45)}%; 
-                    bottom: ${gameData.numBlocks[gameData.index] * 88}px;">
-                    
-                    <img src="${blockImg[randomNum(1,blockImg.length-1)]}" width="168" height="88" alt="tower block">
-                </div>`;
-        }
-
-        blockPlace.play();
-        gameData.numBlocks[gameData.index] += 1;
-
-        console.log(`Player ${gameData.index} numBlock ${gameData.numBlocks[gameData.index]}`)
-
-        removeAppear()
-        
-    }
-
-    
-    function removeAppear() {
-        const blocksAppeared = document.querySelectorAll('.blocks');
-
-        blocksAppeared.forEach(function(block){
-            setTimeout(()=>{ block.classList.remove('appear');}, 500)
-        })
     }
 
 
@@ -337,6 +271,73 @@
     }
 
 
+    // ------ TOWER GAME MODIFICATIONS ------
+
+    //creates the blocks
+    function create() {
+        // loops block generation for every number in a roll
+       for (let i = 0; i < gameData.rollSum; i++) {
+
+           timeout(i); // calling setTimeout function 
+       }
+   }
+
+   // setting timeout so each block is generated one at a time
+   // must be set as a separate function because if the tiemeout is set within the create function, the delay will occur only for the first iteration. setTimeout is a callback function that only runs after a function is finished, so in this case, the delay only happens after the for loop is done
+   // more info here: https://www.geeksforgeeks.org/how-to-add-a-delay-in-a-javascript-loop/ and https://medium.com/@axionoso/watch-out-when-using-settimeout-in-for-loop-js-75a047e27a5f
+   function timeout(i) {
+       setTimeout(blockGen, 750 * i);
+   }
+
+   //block generator; generates one block at a time
+   function blockGen (){
+       const blocks = document.querySelector(`#blocks${gameData.index}`);
+
+       const blockPlace = new Audio('sounds/blockPlace.mp3');
+              
+       // makes sure the first block placed is the same for both players
+       if (gameData.numBlocks[gameData.index] === 0) {
+
+           blocks.innerHTML += `
+               <div 
+                   id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
+                   style="bottom: ${gameData.numBlocks[gameData.index] * 95}px;">
+
+                   <img src=${blockImg[0]} width="168" height="88" alt="tower block">
+               </div>`;
+
+       } else {
+
+           // random location of block placement + styling bottom placement
+           blocks.innerHTML += `
+               <div 
+                   id="block${gameData.numBlocks[gameData.index]}" class="blocks appear" 
+                   style="left: ${randomNum(25, 45)}%; 
+                   bottom: ${gameData.numBlocks[gameData.index] * 88}px;">
+                   
+                   <img src="${blockImg[randomNum(1,blockImg.length-1)]}" width="168" height="88" alt="tower block">
+               </div>`;
+       }
+
+       blockPlace.play();
+       gameData.numBlocks[gameData.index] += 1;
+
+       console.log(`Player ${gameData.index} numBlock ${gameData.numBlocks[gameData.index]}`)
+
+       removeAppear() // "appear" class is removed immediately after block is generated
+   }
+
+   
+   // removes "appear" class for each block so animation only plays when block is generated
+   function removeAppear() {
+       const blocksAppeared = document.querySelectorAll('.blocks');
+
+       blocksAppeared.forEach(function(block){
+           setTimeout(()=>{ block.classList.remove('appear');}, 500)
+       })
+   }
+
+
     // function for changing action button positions
     function actions() {
         if (gameData.index === 1 ) {
@@ -346,8 +347,19 @@
         }
     }
 
+    // removes all divider screens when an overlay is activated for Quit Game or Instructions
+    function dividers() {
+ 
+        if (gameData.index == 0) {
+            document.getElementById('gameDivider1').classList.remove('showing');
+            document.getElementById('gameDivider1').classList.add('hiddenSmooth');
+        } else {
+             document.getElementById('gameDivider0').classList.remove('showing')
+            document.getElementById('gameDivider0').classList.add('hiddenSmooth')
+        }
+    }
 
-    // function for switching the game divider screen on player turn
+    // switches position of the game divider on player turn
     function gameDivider() {
         const dividerOverlay0 = document.querySelector('#gameDivider0');
         const dividerOverlay1 = document.querySelector('#gameDivider1');
@@ -371,7 +383,7 @@
     }
 
 
-    // function for moving background and stuff
+    // moves image background and block tower depending on tower height
     let position0 = 1;
     let position1 = 1
 
@@ -403,6 +415,13 @@
                 backgroundImage.style.bottom = `${position1 * -15}%`
                 position1++;
             }
+        }
+
+        // decreases background sound as player moves up away from the city
+        if (position0 >= 6 || position1 >= 6) {
+            cityNoise.volume = 0.4;
+        } else if (position0 >= 9 || position1 >= 9)  {
+            cityNoise.volume = 0.05;
         }
     }
     
