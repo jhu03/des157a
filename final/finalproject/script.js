@@ -225,12 +225,14 @@
     function showCurrentWinningScore() {
         const score0 = document.querySelector('#score0 p');
         const score1 = document.querySelector('#score1 p');
+        // const scoreGoal = document.querySelector(`#score${gameData.index} span`)
 
         console.log("player 1: " + gameData.score[0]);
         console.log("player 2: " + gameData.score[1]);
 
         score0.innerHTML = `<strong> ${gameData.score[0]}</strong>`;
         score1.innerHTML = `<strong> ${gameData.score[1]}</strong>`;
+        // scoreGoal.innerHTML = `<span>${gameData.score[gameData.index]}</span>`;
     }
 
     function showRoll(){

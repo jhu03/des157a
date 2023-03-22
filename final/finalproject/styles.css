@@ -19,7 +19,7 @@ p {
 
 #game h3 {
     /* font-family: 'Source Code Pro', monospace; */
-    font-size: 1em;
+    font-size: 1.3em;
 }
 
 #score0 p, #score1 p {
@@ -27,6 +27,12 @@ p {
     font-size: 2.3em;
     color: #0d0d0d;
     padding: 10px 0 0;
+    margin: 0;
+}
+
+#score0 .goal, #score1 .goal{
+    font-size: 0.9em;
+    color: #585858;
 }
 
 .showing {
@@ -334,10 +340,9 @@ div {
     100% {transform: translateY(0px);}
 }
 
-.disappear {
+/* .disappear {
     animation-name: poof;
     animation-duration: 1s;
-    /* animation-delay: 1s; */
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
@@ -346,7 +351,7 @@ div {
 @keyframes poof {
     0% {transform: scale(1);}
     100% {transform: scale(0);}
-}
+} */
 
 /* ------ player actions section ------ */
 
