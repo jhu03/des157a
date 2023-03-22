@@ -6,7 +6,7 @@
     const intro = document.querySelector('#intro');
     const exit = document.querySelector('#confirmation')
 
-    const startGame = document.getElementById('startgame');
+    const next = document.querySelector('#next');
     const gameControl = document.getElementById('gamecontrol');
     const score = document.querySelector('#score');
     const blockImg = ['images/base.png', 'images/orange.png','images/yellow.png', 'images/purple.png', 'images/pink.png']
@@ -51,8 +51,21 @@
         preloader.className = 'hiddenSmooth';
     });
 
+    next.addEventListener('click', function(){
+        document.querySelector('#intro .overlay p').innerHTML = `
+            <p><strong>Players</strong>: 2</p>
+            <p><strong>Goal</strong>: Be the first to built a tower of 40 blocks</p>
+
+            <p><strong>Instructions:</strong><br> Each player builds a random number of floors based on the material they have. If they run out of materials, their turn is passed to the next player. Players are able to build again or pass their turn whenever they wish.</p> 
+
+            <p><strong>Randomly select Player 1 and click Start!</strong></p>
+        `;
+        next.className = 'hidden';
+        startGame.className = 'showing';
+    })
 
     // start game sequence when "Start" is clicked
+    const startGame = document.getElementById('startgame');
     startGame.addEventListener('click', function(){
         // randomly set game index here...
         gameData.index = Math.round(Math.random());
@@ -94,21 +107,25 @@
             intro.classList.add('showing');
             intro.classList.remove('hidden');
             dividers()
+            
+            document.querySelector('#resume1').className = 'showing';
+            document.querySelector('#source').className = 'showing';
 
-            document.querySelector('#intro .overlay').innerHTML += '<button id="resume1">Resume building</button>'; // adding new resume button
+        });
 
+        document.querySelector('#resume1').addEventListener('click', function(){
+            intro.classList.add('hidden');
+            intro.classList.remove('showing');
 
-            document.querySelector('#resume1').addEventListener('click', function(){
-                intro.classList.add('hidden');
-                intro.classList.remove('showing');
+            document.querySelector('#resume1').className = 'hidden';
+            document.querySelector('#source').className = 'hidden';
 
-                setUpTurn();
-            });
         });
 
         setUpTurn();    
     })
 
+    
     // ----- BASIC PIG GAME JS CODE -----
 
     function setUpTurn() {
@@ -133,24 +150,7 @@
         console.log("roll 2 " + gameData.roll2);
         console.log("sum " + gameData.rollSum);
 
-        // if two 1's are rolled...
-        // if (gameData.roll2 === 2) {
-        //     actionArea.innerHTML += '<p>Oh snap! Snake eyes!</p>';
-        //     gameData.score[gameData.index] = 0;
-
-        //     // empties blocks from screen and resets nubmer of blocks
-        //     document.querySelector(`#blocks${gameData.index + 1}`).innerHTML = ''; 
-        //     gameData.numBlocks[gameData.index] = 0;
-
-        //     // switch player by looking that true/false of statement
-        //     gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-
-        //     // show current score
-        //     setTimeout(setUpTurn, 2000);
-        //     showCurrentWinningScore();  
-        // } 
-
-        // if either die is a 0...
+        // if die is a 0...
         if (gameData.roll1 === 0){
 
             showRoll(); // shows what the player rolled
@@ -186,7 +186,6 @@
 
                 pass.play();
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-                // gameData.rollSum = 0;
                 setUpTurn();
             })
             
@@ -394,10 +393,6 @@
         const recent = gameData.score[gameData.index];
         const blocks = document.querySelector(`#blocks${gameData.index}`);
         let currentY = ((recent - 6) * -88);
-
-        // let height = window.innerHeight;
-
-        // let recentBlock = document.querySelector(`#block${gameData.numBlocks[gameData.index]}`);
         let towerHeight = backgroundImage.getBoundingClientRect();
         console.log(`tower height ${towerHeight.top}`)
 
